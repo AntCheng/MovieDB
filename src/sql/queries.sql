@@ -12,7 +12,6 @@ UPDATE Users
 SET Passwords = "$newPasswords"
 WHERE AccountNumber = "$AccountNumber";
 
-
 -- Selection/Projection: Select the title of movies that are produced in a particular year
 SELECT title
 FROM MovieBasicInfo
