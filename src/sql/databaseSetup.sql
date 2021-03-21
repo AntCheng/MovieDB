@@ -7,12 +7,12 @@ CREATE TABLE Ranking
 CREATE TABLE MovieCountryInfo
 (
     Languages CHAR(20) NOT NULL,
-    Country  CHAR(20) PRIMARY KEY
+    Country   CHAR(20) PRIMARY KEY
 );
 
 CREATE TABLE MovieCompany
 (
-    Names      CHAR(20) NOT NULL,
+    Names     CHAR(20) NOT NULL,
     CompanyID INT PRIMARY KEY,
     UNIQUE (Names)
 );
@@ -66,7 +66,7 @@ CREATE TABLE Watch
 (
     MovieID       INT,
     AccountNumber INT,
-    Dates          DATE,
+    Dates         DATE,
     PRIMARY KEY (MovieID, AccountNumber)
 );
 
@@ -104,8 +104,8 @@ CREATE TABLE MMContain
 
 CREATE TABLE RReview
 (
-    NumberofLike    INT DEFAULT 0,
-    NumberofDislike INT DEFAULT 0,
+    NumberOfLike    INT DEFAULT 0,
+    NumberOfDislike INT DEFAULT 0,
     Content         CHAR(500) NOT NULL,
     Dates           DATE,
     Rating          INT,
@@ -118,8 +118,8 @@ CREATE TABLE RReview
 
 CREATE TABLE CComment
 (
-    NumberofLike    INT DEFAULT 0,
-    NumberofDislike INT DEFAULT 0,
+    NumberOfLike    INT DEFAULT 0,
+    NumberOfDislike INT DEFAULT 0,
     Content         CHAR(500) NOT NULL,
     Dates           DATE,
     CommentID       INT PRIMARY KEY,
@@ -161,7 +161,7 @@ INSERT INTO Ranking
 VALUES ('Most Comments', 5);
 
 
--- MovieCountryInfo (Language, Country)
+-- MovieCountryInfo (Languages, Country)
 INSERT INTO MovieCountryInfo
 VALUES ('English', 'Canada');
 INSERT INTO MovieCountryInfo
@@ -170,7 +170,7 @@ INSERT INTO MovieCountryInfo
 VALUES ('Mandarin', 'China');
 
 
--- MovieCompany (Name, CompanyID)
+-- MovieCompany (Names, CompanyID)
 INSERT INTO MovieCompany
 VALUES ('Looking Glass', 10000);
 INSERT INTO MovieCompany
@@ -183,7 +183,7 @@ INSERT INTO MovieCompany
 VALUES ('Sandstone Films', 50000);
 
 
--- MovieCompanyInfo  (Title, Year, CompanyID)
+-- MovieCompanyInfo  (Title, Years, CompanyID)
 INSERT INTO MovieCompanyInfo
 VALUES ('Monster Hunter', 2020, 10000);
 INSERT INTO MovieCompanyInfo
@@ -196,7 +196,7 @@ INSERT INTO MovieCompanyInfo
 VALUES ('The Yinyang Master', 2021, 50000);
 
 
--- MovieBasicInfo  (Title, Year, MovieID, Length, Category, Country, Rating, #ofUpvotes, #Watching, #ofComments)
+-- MovieBasicInfo  (Title, Years, MovieID, Lengths, Categories, Country, Rating, NumberOfUpvotes, NumberOfWatching, NumberOfComments)
 INSERT INTO MovieBasicInfo
 VALUES ('Monster Hunter', 2020, 1, 104, 'Fantasy', 'Canada', 0, 0, 0, 0);
 INSERT INTO MovieBasicInfo
@@ -242,7 +242,7 @@ INSERT INTO RMContain
 VALUES (5, 5);
 
 
--- User (AccountNumber, Name, Password)
+-- User (AccountNumber, Names, Passwords)
 INSERT INTO Users
 VALUES (692630, 'ERburETE', 'Kc0I8iYM&2*xgw^s14Mn');
 INSERT INTO Users
@@ -255,7 +255,7 @@ INSERT INTO Users
 VALUES (904166, 'OMEISMIc', '*XD*7E@Hx6ZJ#B28dZEt');
 
 
--- Watch (MovieID int, AccountNumber int, Date date)
+-- Watch (MovieID, AccountNumber, Dates)
 INSERT INTO Watch
 VALUES (1, 904166, '14-4月-2021');
 INSERT INTO Watch
@@ -299,20 +299,20 @@ INSERT INTO HistoryList
 VALUES (55);
 
 
--- FavouriteList (ListID, AccountNumber)
+-- FavouriteList (ListID, Description)
 INSERT INTO FavouriteList
-VALUES (111, 692630);
+VALUES (111, 'dfasfd');
 INSERT INTO FavouriteList
-VALUES (222, 469738);
+VALUES (222, 'eragvaazvfr');
 INSERT INTO FavouriteList
-VALUES (333, 279183);
+VALUES (333, 'frtgbs');
 INSERT INTO FavouriteList
-VALUES (444, 628591);
+VALUES (444, 'xfdhbh');
 INSERT INTO FavouriteList
-VALUES (555, 904166);
+VALUES (555, 'szfhgt');
 
 
--- RReview (#Like, #Dislike, Content, Date, Rating, ReviewID, MovieID, AccountNumber)
+-- RReview (NumberOfLike, NumberOfDislike, Content, Dates, Rating, ReviewID, MovieID, AccountNumber)
 INSERT INTO RReview
 VALUES (0, 0, 'Good 0 ...', '1-1月-2021', 8, 100, 1, 904166);
 INSERT INTO RReview
@@ -325,7 +325,7 @@ INSERT INTO RReview
 VALUES (0, 0, 'Bad 01 ...', '6-1月-2021', 4, 104, 3, 469738);
 
 
--- CComment (#Like, #DisLike, Content, Date, CommentID, ReviewID, AccountNumber)
+-- CComment (NumberOfLike, NumberOfDisLike, Content, Dates, CommentID, ReviewID, AccountNumber)
 INSERT INTO CComment
 VALUES (0, 0, 'Agree 0', '1-2月-2021', 1000, 100, 469738);
 INSERT INTO CComment
@@ -351,7 +351,7 @@ INSERT INTO DiscussionGroup
 VALUES (5, 'Super Group 4');
 
 
--- DiscussionContent (ContentId, GroupID, AccountNumber, Content, Date)
+-- DiscussionContent (ContentID, GroupID, AccountNumber, Content, Dates)
 INSERT INTO DiscussionContent
 VALUES (5000, 1, 279183, 'I like this movie', '2-2月-2021');
 INSERT INTO DiscussionContent
