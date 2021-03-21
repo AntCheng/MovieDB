@@ -242,9 +242,6 @@ INSERT INTO RMContain
 VALUES (5, 5);
 
 
-
-
-
 -- User (AccountNumber, Name, Password)
 INSERT INTO Users
 VALUES (692630, 'ERburETE', 'Kc0I8iYM&2*xgw^s14Mn');
@@ -380,6 +377,7 @@ INSERT INTO MovieList
 VALUES (333, 279183);
 INSERT INTO MovieList
 VALUES (44, 628591);
+
 
 -- MMcontain (MovieID, ListID, AccountNumber)
 INSERT INTO MMcontain
