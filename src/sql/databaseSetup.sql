@@ -35,7 +35,7 @@ CREATE TABLE MovieBasicInfo
     Lengths           INT      NOT NULL,
     Categories        CHAR(20) NOT NULL,
     Country           CHAR(20) NOT NULL,
-    Rating            INT      NOT NULL,
+    Rating            FLOAT    NOT NULL,
     NumberOfUpvotes   INT DEFAULT 0,
     NumberOfWatchings INT DEFAULT 0,
     NumberOfComments  INT DEFAULT 0,
@@ -198,18 +198,18 @@ VALUES ('The Yinyang Master', 2021, 50000);
 
 -- MovieBasicInfo  (Title, Years, MovieID, Lengths, Categories, Country, Rating, NumberOfUpvotes, NumberOfWatching, NumberOfComments)
 INSERT INTO MovieBasicInfo
-VALUES ('Monster Hunter', 2020, 1, 104, 'Fantasy', 'Canada', 0, 0, 0, 0);
+VALUES ('Monster Hunter', 2020, 1, 104, 'Fantasy', 'Canada', 9.6, 452, 2542, 432);
 INSERT INTO MovieBasicInfo
-VALUES ('Greenland', 2020, 2, 119, 'Disaster', 'USA', 0, 0, 0, 0);
+VALUES ('Greenland', 2020, 2, 119, 'Disaster', 'USA', 8.0, 785, 4287, 7369);
 INSERT INTO MovieBasicInfo
-VALUES ('The Little Things', 2021, 3, 128, 'Crime', 'USA', 0, 0, 0, 0);
+VALUES ('The Little Things', 2021, 3, 128, 'Crime', 'USA', 10.0, 214, 7827, 736);
 INSERT INTO MovieBasicInfo
-VALUES ('Endgame', 2021, 4, 119, 'Crime', 'China', 0, 0, 0, 0);
+VALUES ('Endgame', 2021, 4, 119, 'Crime', 'China', 9.8, 524, 3456, 738);
 INSERT INTO MovieBasicInfo
-VALUES ('The Yinyang Master', 2021, 5, 120, 'Fantasy', 'China', 0, 0, 0, 0);
+VALUES ('The Yinyang Master', 2021, 5, 120, 'Fantasy', 'China', 9.4, 724, 45634, 7436);
 
 
---  RMContain (RankingID, MovieID)
+-- RMContain (RankingID, MovieID)
 INSERT INTO RMContain
 VALUES (1, 1);
 INSERT INTO RMContain
