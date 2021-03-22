@@ -34,13 +34,13 @@ WHERE ml.ListID = mc.ListID AND ml.ListID = fl.ListID
 SELECT (*)
 FROM FavouriteList fl
 WHERE NOT EXISTS ((SELECT m.MovieID
-                   FROM Movie m)
+                   FROM Movie m
+                   WHERE m.MovieID > 9.5)
                    EXCEPT
                    (SELECT fl.MovieID
                     FROM MMContain mc
                     WHERE mc.ListID = fl.ListID
-                    AND mc.MovieID = m.MovieID
-                    AND m.MovieID > 9.5));
+                    AND mc.MovieID = m.MovieID));
 
 
 -- Aggregation with Group By: Find the avg rating of the movies in each category
