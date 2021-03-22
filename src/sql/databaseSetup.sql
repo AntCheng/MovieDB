@@ -310,6 +310,8 @@ INSERT INTO FavouriteList
 VALUES (444, 'xfdhbh');
 INSERT INTO FavouriteList
 VALUES (555, 'szfhgt');
+INSERT INTO FavouriteList
+VALUES (6666, 'aaaaaaaaaaa');
 
 
 -- RReview (NumberOfLike, NumberOfDislike, Content, Dates, Rating, ReviewID, MovieID, AccountNumber)
@@ -377,6 +379,8 @@ INSERT INTO MovieList
 VALUES (333, 279183);
 INSERT INTO MovieList
 VALUES (44, 628591);
+INSERT INTO MovieList
+VALUES (6666, 628591);
 
 
 -- MMcontain (MovieID, ListID, AccountNumber)
@@ -404,3 +408,9 @@ INSERT INTO MMcontain
 VALUES (4, 333, 279183);
 INSERT INTO MMcontain
 VALUES (1, 44, 628591);
+INSERT INTO MMcontain
+VALUES (1, 6666, 628591);
+INSERT INTO MMcontain
+VALUES (3, 6666, 628591);
+INSERT INTO MMcontain
+VALUES (4, 6666, 628591);
