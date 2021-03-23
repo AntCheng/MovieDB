@@ -6,8 +6,8 @@ WHERE CommentID = '$CommentID'
 
 -- Deletion: Delete a review of oneself from RReview
 DELETE
-FROM CComment
-WHERE CommentID = '$CommentID'
+FROM RREVIEW
+WHERE REVIEWID = '$ReviewID'
   AND AccountNumber = '$AccountNumber';
 
 -- Update: Update a user’s password
