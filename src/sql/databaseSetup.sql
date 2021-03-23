@@ -1,3 +1,5 @@
+alter session set nls_language='AMERICAN';
+
 CREATE TABLE Ranking
 (
     RankingName CHAR(20),
