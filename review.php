@@ -15,7 +15,7 @@
        <hr />
 
        <h2>Write your review!</h2>
-       <form action="review.php"> <!--refresh page when submitted-->
+       <form method="POST" action="review.php"> <!--refresh page when submitted-->
            <label for="review">your review:</label><br>
            <textarea name="review" rows="20" cols="40"></textarea>
            <br><br>
@@ -27,7 +27,6 @@
 <?php
 //this tells the system that it's no longer just parsing html; it's now parsing PHP
 
-// session_start();
 
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = NULL; // edit the login credentials in connectToDB()
@@ -118,7 +117,7 @@ function connectToDB() {
 
     // Your username is ora_(CWL_ID) and the password is a(student number). For example,
     // ora_platypus is the username and a12345678 is the password.
-    $db_conn = OCILogon("ora_ryang07", "a21315726", "dbhost.students.cs.ubc.ca:1522/stu");
+    $db_conn = OCILogon("ora_guorunhe", "a17975517", "dbhost.students.cs.ubc.ca:1522/stu");
 
     if ($db_conn) {
         debugAlertMessage("Database is Connected");
@@ -143,6 +142,7 @@ function disconnectFromDB() {
 function handleDisplayRequest(){
     // TODO: SESSION to get current current movie that is being reviewed
     global $db_conn;///
+    // $mid = $_SESSION['mid'];
     $result = executePlainSQL("SELECT u.Names, r.Content 
                                       FROM RReview r, Users u
                                       WHERE MovieID = '1' AND r.AccountNumber = u.AccountNumber");
@@ -156,14 +156,33 @@ function handleMapRequest(){
     // TODO: SESSION to get current user information and current movie that is being reviewed
     // TODO: get current date
     global $db_conn;///
-    $Review = (isset($_POST['mapReviewsRequest'])) ? $_POST['mapReviewsRequest'] : null;
+    $Review = (isset($_POST['review'])) ? $_POST['review'] : null;
     // $rating = (isset($_POST['mapRatingRequest'])) ? $_POST['mapRatingRequest'] : null;
-    $mid = $_SESSION['mid'];
-    $AccountNumber = $_SESSION['AccountNumber'];
-    $result = executePlainSQL("INSERT INTO RReview
-                              VALUES (0, 0, '$Review', '1-Jan-2021', 8, 100, '$mid', '$AccountNumber');");
+    //$mid = $_SESSION['mid'];
+    //$AccountNumber = $_SESSION['AccountNumber'];
+    //$result = executePlainSQL("INSERT INTO RReview
+    //                          VALUES (0, 0, '$Review', '1-Jan-2021', 8, 100, '$mid', '$AccountNumber');");
 
+    if ($Review === "") {
+        echo 'please write a review, try again!';
+        exit;
+    } else {
+        $tuple = array ($Review);
+    }
+    executeBoundSQL("INSERT INTO RReview
+                            VALUES (0, 0, '$Review', '1-Jan-2021', 8, 199, 1, 692630)", $tuple);
 
+    echo "<br>Saving review...<br>";
+    $committed = oci_commit($db_conn);
+
+    // Test whether commit was successful. If error occurred, return error message
+    if (!$committed) {
+        $error = oci_error($db_conn);
+        echo 'Commit failed. Oracle reports: ' . $error['message'];
+
+    }
+    header('refresh:1; url=main.php');
+    exit;
 }
 
 // HANDLE ALL POST ROUTES
@@ -190,7 +209,7 @@ function handleGETRequest() {
     }
 }
 
-if (isset($_POST['mapReviewsRequest'])) {
+if (isset($_POST['mapReviews'])) {
     handlePOSTRequest();
 } else if (isset($_GET['displayReviewsRequest'])) {///
     handleGETRequest();
