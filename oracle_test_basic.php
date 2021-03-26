@@ -53,7 +53,8 @@
                     $success = False;
                 } else {
                     echo "<br>Sign Up Successfully! Going to Log In Page in 3 seconds.<br>";
-                    header('refresh:5; url=login.php');    
+                    header('refresh:5; url=login.php');
+                    exit();
                 }
             }
         }
@@ -62,7 +63,7 @@
             global $db_conn;
             // Your username is ora_(CWL_ID) and the password is a(student number). For example, 
 			// ora_platypus is the username and a12345678 is the password.
-            $db_conn = OCILogon("ora_guorunhe", "a17975517", "dbhost.students.cs.ubc.ca:1522/stu");
+            $db_conn = OCILogon("ora_ryang07", "a21315726", "dbhost.students.cs.ubc.ca:1522/stu");
             if ($db_conn) {
                 debugAlertMessage("Database is Connected");
                 return true;

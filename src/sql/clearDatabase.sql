@@ -15,3 +15,4 @@ drop table MOVIECOUNTRYINFO;
 drop table MOVIECOMPANY;
 drop table RANKING;
 drop table USERS;
+drop table CURRENTUSER;

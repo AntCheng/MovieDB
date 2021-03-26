@@ -149,6 +149,12 @@ CREATE TABLE DiscussionContent
     FOREIGN KEY (GroupID) REFERENCES DiscussionGroup (GroupID)
 );
 
+CREATE TABLE CurrentUser
+(
+    Names         CHAR(20) PRIMARY KEY,
+    Passwords     CHAR(20)
+);
+
 
 -- Ranking (RankingName, RankingID)
 INSERT INTO Ranking
@@ -318,15 +324,15 @@ VALUES (6666, 'aaaaaaaaaaa');
 
 -- RReview (NumberOfLike, NumberOfDislike, Content, Dates, Rating, ReviewID, MovieID, AccountNumber)
 INSERT INTO RReview
-VALUES (0, 0, 'Good 0 ...', '1-Jan-2021', 8, 100, 1, 904166);
+VALUES (0, 0, 'Good 0 ...', '1-Jan-2021', 8, 1, 1, 904166);
 INSERT INTO RReview
-VALUES (0, 0, 'Good 1 ...', '2-Jan-2021', 9, 101, 1, 469738);
+VALUES (0, 0, 'Good 1 ...', '2-Jan-2021', 9, 2, 1, 469738);
 INSERT INTO RReview
-VALUES (0, 0, 'Bad 00 ...', '1-Jan-2021', 3, 102, 1, 628591);
+VALUES (0, 0, 'Bad 00 ...', '1-Jan-2021', 3, 3, 1, 628591);
 INSERT INTO RReview
-VALUES (0, 0, 'Good 2 ...', '4-Jan-2021', 7, 103, 4, 279183);
+VALUES (0, 0, 'Good 2 ...', '4-Jan-2021', 7, 4, 4, 279183);
 INSERT INTO RReview
-VALUES (0, 0, 'Bad 01 ...', '6-Jan-2021', 4, 104, 3, 469738);
+VALUES (0, 0, 'Bad 01 ...', '6-Jan-2021', 4, 5, 3, 469738);
 
 
 -- CComment (NumberOfLike, NumberOfDisLike, Content, Dates, CommentID, ReviewID, AccountNumber)
@@ -416,3 +422,7 @@ INSERT INTO MMcontain
 VALUES (3, 6666, 628591);
 INSERT INTO MMcontain
 VALUES (4, 6666, 628591);
+
+-- CurrentUser (Names, Passwords)
+INSERT INTO CurrentUser
+VALUES ('fake', 'dwiucvoj');

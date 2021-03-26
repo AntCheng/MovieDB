@@ -1,11 +1,6 @@
 <?php
 include 'dbh.php';
 
-if(!isset($_GET['uid'])){
-    header('refresh:1; url=login.php');
-    exit();
-}
-echo "The current user is  " .$_GET['uid'];
 ?>
 
 
@@ -22,16 +17,18 @@ echo "The current user is  " .$_GET['uid'];
             <input type="submit" name="countTuples"></p>
         </form>
 
+        <h2>Review/Rate a movie</h2>
+        <form method="GET" action="review.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="reviewRequest" name="reviewRequest">
+            <input type="submit" name="review"></p>
+        </form>
+
         <h2>Display all the movies with their info</h2> 
         <form method="GET" action="main.php"> <!--refresh page when submitted-->
             <input type="hidden" id="displayTupleRequest" name="displayTupleRequest">
             <input type="submit" value = "display" name="displayTuples"></p>
         </form>
 
-        <form method='GET' action="main.php">
-
-
-        </form>
 
 
         <?php
@@ -45,6 +42,12 @@ echo "The current user is  " .$_GET['uid'];
             }
         }
 
+        function handleReviewRequest(){
+
+            header('url=review.php');
+
+        }
+
         function handleDisplayRequest(){
             global $db_conn;///
             //require 'login.php';
@@ -53,6 +56,10 @@ echo "The current user is  " .$_GET['uid'];
             while (($row = oci_fetch_row($result)) != false) {
                 echo "<br>  " . $row[0] . "    " . $row[1] . $row[2] . "    " . $row[3] . "    " . $row[4] . "    " . $row[5] . "    " . $row[6] . "    " . $row[7] . "    " . $row[8] . "    " . $row[9] . " <br>";
             }
+/*            $mid = '4';
+            $uid = $_GET['uid'];
+            echo $uid;
+            header('refresh:1; url=review.php?uid=' .$uid.'&mid=' .$mid);*/
             
         }
 
@@ -73,6 +80,8 @@ echo "The current user is  " .$_GET['uid'];
                     handleCountRequest();
                 } else if(array_key_exists('displayTuples',$_GET)){
                     handleDisplayRequest();
+                } else if(array_key_exists('review',$_GET)) {
+                    handleReviewRequest();
                 }
 
                 disconnectFromDB();
@@ -81,7 +90,8 @@ echo "The current user is  " .$_GET['uid'];
 
 		if (0) {
             handlePOSTRequest();
-        } else if (isset($_GET['countTupleRequest']) || isset($_GET['displayTupleRequest'])) {///
+        } else if (isset($_GET['countTupleRequest']) || isset($_GET['displayTupleRequest'])
+                || isset($_GET['reviewRequest'])) {///
             handleGETRequest();
         }
 		?>
