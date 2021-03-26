@@ -1,5 +1,11 @@
 <?php
 include 'dbh.php';
+
+if(!isset($_GET['uid'])){
+    header('refresh:1; url=login.php');
+    exit();
+}
+echo "The current user is  " .$_GET['uid'];
 ?>
 
 
@@ -22,8 +28,13 @@ include 'dbh.php';
             <input type="submit" value = "display" name="displayTuples"></p>
         </form>
 
-        <?php
+        <form method='GET' action="main.php">
 
+
+        </form>
+
+
+        <?php
         function handleCountRequest() {
             global $db_conn;
 

@@ -29,7 +29,7 @@ function handleLoginRequest() {
     $result = oci_fetch_row($q); 
     if ($result[0]==1) {
         echo "<br>Logged In Successfully!<br>";
-        header('refresh:1; url=main.php');
+        header('refresh:1; url=main.php?uid=' .$n);
     } else if ($result[0] == 0) {
         header('refresh:3; url=login.php');
         echo "<br>Username or password wrong. Autorefresh in 3 seconds.<br>";
