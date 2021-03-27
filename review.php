@@ -6,7 +6,7 @@ include 'dbh.php';
 
 <html>
 <head>
-    <title>Review Page</title>
+    <title>Add a review</title>
 
 </head>
 
@@ -54,7 +54,6 @@ function handleRatingRequest() {
 
 
 function handleDisplayRequest(){
-    // TODO: SESSION to get current movie that is being reviewed
     global $mid;
     if(isset($_POST['submitMovie'])) {
         $mid = $_POST['movie'];
@@ -70,8 +69,6 @@ function handleDisplayRequest(){
 
 
 function handleMapRequest(){
-    // TODO: get current movie that is being reviewed
-    // TODO: get current date
     global $db_conn;///
     $mid = $_POST['movie'];
     if(isset($_POST['submitRating'])) {
@@ -87,14 +84,14 @@ function handleMapRequest(){
         echo 'please give a rating, try again!';
         exit;
     } else {
-        $raw_name = executePlainSQL("SELECT Names FROM CurrentUser");
+       /* $raw_name = executePlainSQL("SELECT Names FROM CurrentUser");
         while (($row = oci_fetch_row($raw_name)) != false) {
             $name = $row[0];
         }
         $raw_accountNumber = executePlainSQL("SELECT AccountNumber FROM Users WHERE (Names = '$name')");
         while (($row = oci_fetch_row($raw_accountNumber)) != false) {
             $accountNumber = $row[0];
-        }
+        }*/
         $raw_number = executePlainSQL("SELECT COUNT(*) FROM RReview");
         while (($row = oci_fetch_row($raw_number)) != false) {
             $number = $row[0];

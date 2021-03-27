@@ -149,11 +149,11 @@ CREATE TABLE DiscussionContent
     FOREIGN KEY (GroupID) REFERENCES DiscussionGroup (GroupID)
 );
 
-CREATE TABLE CurrentUser
-(
-    Names         CHAR(20) PRIMARY KEY,
-    Passwords     CHAR(20)
-);
+-- CREATE TABLE CurrentUser
+-- (
+--    Names         CHAR(20) PRIMARY KEY,
+--    Passwords     CHAR(20)
+--);
 
 
 -- Ranking (RankingName, RankingID)
@@ -424,5 +424,5 @@ INSERT INTO MMcontain
 VALUES (4, 6666, 628591);
 
 -- CurrentUser (Names, Passwords)
-INSERT INTO CurrentUser
-VALUES ('fake', 'dwiucvoj');
+-- INSERT INTO CurrentUser
+-- VALUES ('fake', 'dwiucvoj');
