@@ -65,8 +65,9 @@ WHERE NOT EXISTS((SELECT u.AccountNumber
 -- Aggregation with Group By: Find the avg rating of the movies in each category
 SELECT mm.MovieID
 FROM (SELECT m.MovieID, max(rating)
-      FROM MovieBasicInfo m
+      FROM MovieBasicInfo m --sql , moviebsaicinfo m
       GROUP BY Categories) as mm;
+
 
 
 
@@ -90,7 +91,7 @@ FROM (SELECT Categories, avg(NumberOfWatchings) AS AvgWatchings
 SELECT sd.MovieID
 FROM (SELECT m.MOVIEID, Count(*) as nreview
       FROM MovieBasicInfo m, RREVIEW r
-      WHERE m.MOVIEID = r.MovieID
+      WHERE m.MovieID = r.MovieID
       GROUP BY m.MOVIEID) As sd
 WHERE sd.nreview = (SELECT max(sd.nreview)
                    FROM sd);

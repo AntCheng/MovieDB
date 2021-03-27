@@ -31,18 +31,20 @@ include 'queryDisplay.php';
 
 
         <form class="form-horizontal" method="POST" action="#">
+                                <input type="hidden" id="searchRequest" name="searchRequest">
 								<div class="form_input">
 									<select id="filter_category" class="form-control" name="filter_category">
 										<option value="" disabled selected hidden>choose category</option>
 										<option value="">n/a</option> 
+                                        <option value="Fantasy">Fantasy</option> 
 									    <?php echo "some function here" ?>
 										<option value="all">All Category</option> 
 									</select>
 								</div>
 								<hr>
 								<div class="form_input">
-									<select id="filter_language" class="form-control" name="filter_langauge">
-										<option value="" disabled selected hidden>choose Language</option>
+									<select id="filter_country" class="form-control" name="filter_country">
+										<option value="" disabled selected hidden>choose country</option>
 										<option value="">n/a</option> 
 										<?php "some function here" ?>
 	                				</select>
@@ -116,14 +118,18 @@ include 'queryDisplay.php';
         }
 
         function handleSearchRequest(){
-            queryAndDisplay();
+            echo "check 0";
+            generalQueryAndDisplay();
         }
 
         // HANDLE ALL POST ROUTES
 	// A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
         function handlePOSTRequest() {
+            echo "check before connectDB";
             if (connectToDB()) {
+                echo "check0.0";
                 if (array_key_exists('search', $_POST)) {
+                    echo "check -1";
                     handleSearchRequest();
                 }
                 disconnectFromDB();
@@ -146,7 +152,8 @@ include 'queryDisplay.php';
             }
         }
 
-		if (0) {
+		if (isset($_POST['searchRequest'])){
+            echo "before handle request call";
             handlePOSTRequest();
         } else if (isset($_GET['countTupleRequest']) || isset($_GET['displayTupleRequest'])
                 || isset($_GET['reviewRequest'])) {///
