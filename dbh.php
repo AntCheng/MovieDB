@@ -16,7 +16,7 @@ function debugAlertMessage($message) {
 function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL command and executes it
     //echo "<br>running ".$cmdstr."<br>";
 
-    connectToDB();
+    //connectToDB();
     global $db_conn, $success;
 
     $statement = OCIParse($db_conn, $cmdstr); 
@@ -36,7 +36,7 @@ function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL com
         echo htmlentities($e['message']);
         $success = False;
     }
-    disconnectFromDB();
+    //disconnectFromDB();
     return $statement;
 }
 
@@ -46,7 +46,7 @@ In this case you don't need to create the statement several times. Bound variabl
 parsed once and you can reuse the statement. This is also very useful in protecting against SQL injection. 
 See the sample code below for how this function is used */
 
-    connectToDB();
+    //connectToDB();
     global $db_conn, $success;
     $statement = OCIParse($db_conn, $cmdstr);
 
@@ -74,7 +74,7 @@ See the sample code below for how this function is used */
             $success = False;
         }
     }
-    disconnectFromDB();
+    //disconnectFromDB();
 }
 
 function printResult($result) { //prints results from a select statement
@@ -94,7 +94,7 @@ function connectToDB() {
 
     // Your username is ora_(CWL_ID) and the password is a(student number). For example, 
     // ora_platypus is the username and a12345678 is the password.
-    $db_conn = OCILogon("ora_ryang07", "a21315726", "dbhost.students.cs.ubc.ca:1522/stu");
+    $db_conn = OCILogon("ora_guorunhe", "a17975517", "dbhost.students.cs.ubc.ca:1522/stu");
 
     if ($db_conn) {
         debugAlertMessage("Database is Connected");
