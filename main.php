@@ -49,6 +49,7 @@ include 'queryDisplay.php';
 									<select id="filter_year" class="form-control" name="filter_year">
 										<option value="" disabled selected hidden>choose year</option>
 										<option value="">n/a</option> 
+                                        <option value="2020">2020</option> 
 										<?php "year function()" ?>
 	                				</select>
 								</div>
