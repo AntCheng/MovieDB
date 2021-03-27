@@ -20,7 +20,7 @@ function generalQueryAndDisplay(){
         $sql .= "AND m.county = '" .$_POST['filter_country']. "'";
     }
     if($year!=""){
-        $sql .= "AND m.year = '" .$_POST['filter_year']. "'";
+        $sql .= "AND m.years = '" .$_POST['filter_year']. "'";
     }
     if($rating!=""){
         $sql .= "AND m.rating = '" .$_POST['filter_rating']. "'";
