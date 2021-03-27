@@ -39,6 +39,7 @@ WHERE ml.ListID = mc.ListID
   AND ml.AccountNumber = '$AccountNumber';
 
 
+-- can change: find all movies that have been reviewed by all users.
 -- Division: Find all user’s favourite lists that have all movies rating larger than 9.5
 SELECT *
 FROM FavouriteList fl
@@ -49,12 +50,25 @@ WHERE NOT EXISTS((SELECT m.MOVIEID
                  (SELECT mm.MOVIEID
                   FROM MMCONTAIN mm
                   WHERE mm.LISTID = fl.LISTID));
+--
+SELECT m.movieID
+FROM MovieBasicInfo m
+WHERE NOT EXISTS((SELECT u.AccountNumber
+                  FROM Users u)
+                 MINUS
+                 (SELECT r.AccountNumber
+                  FROM RREVIEW r
+                  WHERE r.MovieID = m.movieID));
 
 
+-- Aggregation with Group By: find the best rating movieID in each category
 -- Aggregation with Group By: Find the avg rating of the movies in each category
-SELECT Categories, avg(rating)
-FROM MovieBasicInfo
-GROUP BY Categories;
+SELECT mm.MovieID
+FROM (SELECT m.MovieID, max(rating)
+      FROM MovieBasicInfo m
+      GROUP BY Categories) as mm;
+
+
 
 
 -- Aggregation with Having: Find the avg number of up-votes for each category
@@ -65,8 +79,18 @@ GROUP BY Categories
 HAVING avg(rating) > (SELECT avg(rating) FROM MovieBasicInfo);
 
 
+
 -- Nested Aggregation with Group By: Find the largest average views of all categories
 SELECT max(AvgWatchings)
 FROM (SELECT Categories, avg(NumberOfWatchings) AS AvgWatchings
       FROM MovieBasicInfo
       GROUP BY Categories);
+-- change to
+-- Nested Aggregation with Group By: Find the most reviewed movieID
+SELECT sd.MovieID
+FROM (SELECT m.MOVIEID, Count(*) as nreview
+      FROM MovieBasicInfo m, RREVIEW r
+      WHERE m.MOVIEID = r.MovieID
+      GROUP BY m.MOVIEID) As sd
+WHERE sd.nreview = (SELECT max(sd.nreview)
+                   FROM sd);

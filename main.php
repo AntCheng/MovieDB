@@ -1,6 +1,6 @@
 <?php
 include 'dbh.php';
-
+include 'queryDisplay.php';
 ?>
 
 
@@ -30,8 +30,60 @@ include 'dbh.php';
         </form>
 
 
+        <form class="form-horizontal" method="POST" action="#">
+								<div class="form_input">
+									<select id="filter_category" class="form-control" name="filter_category">
+										<option value="" disabled selected hidden>choose category</option>
+										<option value="">n/a</option> 
+									    <?php echo "some function here" ?>
+										<option value="all">All Category</option> 
+									</select>
+								</div>
+								<hr>
+								<div class="form_input">
+									<select id="filter_language" class="form-control" name="filter_langauge">
+										<option value="" disabled selected hidden>choose Language</option>
+										<option value="">n/a</option> 
+										<?php "some function here" ?>
+	                				</select>
+								</div>
+								<hr>
+								<div class="form_input">
+									<select id="filter_year" class="form-control" name="filter_year">
+										<option value="" disabled selected hidden>choose year</option>
+										<option value="">n/a</option> 
+										<?php "year function()" ?>
+	                				</select>
+								</div>
+								<hr>
+								<div class="form_input">
+									<select id="filter_rating" class="form-control" name="filter_rating">
+										<option value="" disabled selected hidden>choose Rating</option>
+										<option value="">n/a</option> 
+										<option value=5>5</option> 
+										<option value=4>4</option> 
+										<option value=3>3</option> 
+										<option value=2>2</option> 
+										<option value=1>1</option> 
+	                				</select>
+								</div>
+								<hr>
+								<div class="form_input">
+									Top User Rated: <input type="checkbox" id="filter_topRating" name="filter_topRating">
+								</div>
+								<hr>
+								<div class="form_input">
+									Most reviewed: <input type="checkbox" id="filter_maxActivities" name="filter_maxActivities">
+								</div>
+								<hr>
+								<input type="submit" name="search" value="search" class="btn btn-primary"/>
+		</form>
+
 
         <?php
+
+        echo $_GET[uid];
+
         function handleCountRequest() {
             global $db_conn;
 
@@ -63,11 +115,17 @@ include 'dbh.php';
             
         }
 
+        function handleSearchRequest(){
+            queryAndDisplay();
+        }
+
         // HANDLE ALL POST ROUTES
 	// A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
         function handlePOSTRequest() {
             if (connectToDB()) {
-                
+                if (array_key_exists('search', $_POST)) {
+                    handleSearchRequest();
+                }
                 disconnectFromDB();
             }
         }
