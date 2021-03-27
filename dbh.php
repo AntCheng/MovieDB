@@ -16,7 +16,7 @@ function debugAlertMessage($message) {
 function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL command and executes it
     //echo "<br>running ".$cmdstr."<br>";
 
-    //connectToDB();
+    connectToDB();
     global $db_conn, $success;
 
     $statement = OCIParse($db_conn, $cmdstr); 
@@ -36,7 +36,7 @@ function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL com
         echo htmlentities($e['message']);
         $success = False;
     }
-    //disconnectFromDB();
+    disconnectFromDB();
     return $statement;
 }
 

@@ -17,11 +17,6 @@ include 'queryDisplay.php';
             <input type="submit" name="countTuples"></p>
         </form>
 
-        <h2>Review/Rate a movie</h2>
-        <form method="GET" action="review.php"> <!--refresh page when submitted-->
-            <input type="hidden" id="reviewRequest" name="reviewRequest">
-            <input type="submit" name="review"></p>
-        </form>
 
         <h2>Display all the movies with their info</h2> 
         <form method="GET" action="main.php"> <!--refresh page when submitted-->
@@ -96,11 +91,6 @@ include 'queryDisplay.php';
             }
         }
 
-        function handleReviewRequest(){
-
-            header('url=review.php');
-
-        }
 
         function handleDisplayRequest(){
             global $db_conn;///
@@ -113,7 +103,7 @@ include 'queryDisplay.php';
 /*            $mid = '4';
             $uid = $_GET['uid'];
             echo $uid;
-            header('refresh:1; url=review.php?uid=' .$uid.'&mid=' .$mid);*/
+            header('refresh:1; url=displayReview.php?uid=' .$uid.'&mid=' .$mid);*/
             
         }
 
@@ -144,10 +134,7 @@ include 'queryDisplay.php';
                     handleCountRequest();
                 } else if(array_key_exists('displayTuples',$_GET)){
                     handleDisplayRequest();
-                } else if(array_key_exists('review',$_GET)) {
-                    handleReviewRequest();
                 }
-
                 disconnectFromDB();
             }
         }
@@ -156,7 +143,7 @@ include 'queryDisplay.php';
             echo "before handle request call";
             handlePOSTRequest();
         } else if (isset($_GET['countTupleRequest']) || isset($_GET['displayTupleRequest'])
-                || isset($_GET['reviewRequest'])) {///
+              ) {///
             handleGETRequest();
         }
 		?>

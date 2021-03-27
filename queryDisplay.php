@@ -20,7 +20,7 @@ function generalQueryAndDisplay(){
         $sql .= "AND m.county = '" .$_POST['filter_country']. "'";
     }
     if($year!=""){
-        $sql .= "AND m.year = '" .$_POST['filter_year']. "'";
+        $sql .= "AND m.years = '" .$_POST['filter_year']. "'";
     }
     if($rating!=""){
         $sql .= "AND m.rating = '" .$_POST['filter_rating']. "'";
@@ -30,6 +30,7 @@ function generalQueryAndDisplay(){
 }
 
 function Display($sql){
+    echo $_GET[uid];
     echo "check 3";
     //require 'dbh.php';
     echo 'check 4';
@@ -44,7 +45,9 @@ function Display($sql){
         // echo $movieInfo[0];
         //echo $movieInfo['TITLE'];
         $targetMovie .=  '<h2>'.$movieInfo[0].'</h2>';
-        $targetMovie .=  '<form method="POST" action="review.php?mid='.$movieInfo[2].'">';
+        $url = "displayReview.php?mid=".urlencode($movieInfo[2])."&uid=".urlencode($_GET[uid]);
+        $targetMovie .=  '<form method="POST" action='.$url.'>';
+        //$targetMovie .=  '<form method="POST" action="displayReview.php?mid='.$movieInfo[2].'"&uid="'..'">';
         $targetMovie .=     '<input type="submit" value="moreInfo" name="moreInfo"></p>';
         $targetMovie .=  '</form>';
     }
