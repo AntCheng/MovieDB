@@ -4,30 +4,33 @@ FROM CComment
 WHERE CommentID = '$CommentID'
   AND AccountNumber = '$AccountNumber';
 
+--TODO
 -- Deletion: Delete a review of oneself from RReview
 DELETE
 FROM RREVIEW
 WHERE REVIEWID = '$ReviewID'
   AND AccountNumber = '$AccountNumber';
 
+--TODO
 -- Update: Update a user’s password
 UPDATE Users
 SET Passwords = '$newPasswords'
 WHERE AccountNumber = '$AccountNumber';
 
--- Selection/Projection: Select the title of movies that are produced in a particular year
-SELECT title
+--T
+-- Selection/Projection: Select the MovieID of movies that are produced in a particular year
+SELECT MovieID
 FROM MovieBasicInfo
 WHERE Years = '$Years';
 
+--T
 -- Selection/Projection: Select the title of movies that are produced by a specific movie company
-SELECT mo.title
-FROM MovieCompanyInfo mo,
-     MovieCompany co
-WHERE mo.CompanyID = co.CompanyID
-  AND co.names = '$Names';
+SELECT m.MovieID
+FROM MovieBasicInfo m,
+WHERE m.Country = '$Country';
 
-
+--TODO
+-- Join: MovieBasicInfo and RReview, used when user click moreinfo for the movie
 -- Join: Users want to check if a specific movie is in their favourite lists
 SELECT *
 FROM MovieList ml,
@@ -39,18 +42,9 @@ WHERE ml.ListID = mc.ListID
   AND ml.AccountNumber = '$AccountNumber';
 
 
+-- T
 -- can change: find all movies that have been reviewed by all users.
 -- Division: Find all user’s favourite lists that have all movies rating larger than 9.5
-SELECT *
-FROM FavouriteList fl
-WHERE NOT EXISTS((SELECT m.MOVIEID
-                  FROM MovieBasicInfo m
-                  WHERE m.RATING > 9.5)
-                 MINUS
-                 (SELECT mm.MOVIEID
-                  FROM MMCONTAIN mm
-                  WHERE mm.LISTID = fl.LISTID));
---
 SELECT m.movieID
 FROM MovieBasicInfo m
 WHERE NOT EXISTS((SELECT u.AccountNumber
@@ -61,33 +55,29 @@ WHERE NOT EXISTS((SELECT u.AccountNumber
                   WHERE r.MovieID = m.movieID));
 
 
+-- T
 -- Aggregation with Group By: find the best rating movieID in each category
--- Aggregation with Group By: Find the avg rating of the movies in each category
-SELECT mm.MovieID
-FROM (SELECT m.MovieID, max(rating)
-      FROM MovieBasicInfo m --sql , moviebsaicinfo m
-      GROUP BY Categories) mm;
+WITH mm AS (SELECT m.Categories, max(rating) as rati
+                        FROM MovieBasicInfo m 
+                        GROUP BY m.Categories)
+    SELECT m.MovieID
+    FROM  mm, MovieBasicInfo m
+    WHERE mm.Categories = m.Categories AND m.rating = mm.rati
 
 
 
-
-
--- Aggregation with Having: Find the avg number of up-votes for each category
--- for which the average rating is higher than the average rating of all movies
-SELECT Categories, avg(NumberOfUpvotes)
+--T
+-- Aggregation with Having: Find the welcome category that has average rating higher than the average rating of all movies
+SELECT Categories
 FROM MovieBasicInfo
 GROUP BY Categories
 HAVING avg(rating) > (SELECT avg(rating) FROM MovieBasicInfo);
 
 
 
--- Nested Aggregation with Group By: Find the largest average views of all categories
-SELECT max(AvgWatchings)
-FROM (SELECT Categories, avg(NumberOfWatchings) AS AvgWatchings
-      FROM MovieBasicInfo
-      GROUP BY Categories);
--- change to
--- Nested Aggregation with Group By: Find the most reviewed movieID
+-- T
+-- Nested Aggregation with Group By: Find the most reviewed movieID 
+-- Used in most review checkbox
 SELECT sd.MovieID
 FROM (SELECT m.MOVIEID, Count(*) as nreview
       FROM MovieBasicInfo m, RREVIEW r

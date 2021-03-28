@@ -68,8 +68,10 @@ function Display($sql){
     echo 'check 5';
     $result = executePlainSQL($sql);
     echo 'check 6';
+    $empty = 0;
     while(($row = oci_fetch_row($result)) != false){
         // echo $row[0];
+        $empty = 1;
         $movieInfo = executePlainSQL('SELECT * FROM MovieBasicInfo m WHERE m.MovieID ='.$row[0]);
         $movieInfo = oci_fetch_row($movieInfo);
         // echo $movieInfo[0];
@@ -81,8 +83,46 @@ function Display($sql){
         $targetMovie .=     '<input type="submit" value="moreInfo" name="moreInfo"></p>';
         $targetMovie .=  '</form>';
     }
+    if($empty ==0){
+        echo "<h2>Unfortunely, No such movies in the database</h2>";
+    }
     echo $targetMovie;
 
 }
+
+function queryCatRequest(){
+    $sql =" WITH mm AS (SELECT m.Categories, max(rating) as rati
+                        FROM MovieBasicInfo m 
+                        GROUP BY m.Categories)
+    SELECT m.MovieID
+        FROM  mm, MovieBasicInfo m
+            WHERE mm.Categories = m.Categories AND m.rating = mm.rati";
+    Display($sql);
+}
+
+function queryAllReview(){
+    $sql ="SELECT m.movieID
+    FROM MovieBasicInfo m
+    WHERE NOT EXISTS((SELECT u.AccountNumber
+                      FROM Users u)
+                     MINUS
+                     (SELECT r.AccountNumber
+                      FROM RREVIEW r
+                      WHERE r.MovieID = m.movieID))";
+    Display($sql);
+}
+
+function queryWelcomeCat(){
+    $sql ="SELECT Categories
+    FROM MovieBasicInfo
+    GROUP BY Categories
+    HAVING avg(rating) > (SELECT avg(rating) FROM MovieBasicInfo)";
+    echo "<h3> The welcome categories are: </h3>";
+    $result = executePlainSQL($sql);
+    while(($row = oci_fetch_row($result)) != false){
+        echo "$row[0]   &nbsp;&nbsp;";
+    }
+}
+
 
 ?>
