@@ -71,8 +71,7 @@ $url = "main.php?uid=".urlencode($uid);
 <?php
 
 
-function handleMapRequest(){
-    // TODO: get current date?
+function handleMapRequest() {
     global $db_conn;///
     global $mid;
     global $uid;
@@ -99,8 +98,9 @@ function handleMapRequest(){
             $number = $row[0];
         }
         $number++;   // set review id to be #of current reviews + 1
+        $date = date('j-M-Y');
         executePlainSQL("INSERT INTO RReview
-                            VALUES (0, 0, '$Review', '1-Jan-2021', $Rating, '$number', '$mid', '$accountNumber')");
+                            VALUES (0, 0, '$Review', '$date', $Rating, '$number', '$mid', '$accountNumber')");
     }
 
     echo "<br>Review Saved!<br>";
