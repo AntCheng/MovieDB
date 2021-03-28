@@ -12,22 +12,16 @@ echo "<hr />";
 <head>
     <title>Movie Info</title>
 </head>
-
-<body>
-
-<h2>The number of movies</h2>
-<form method="GET" action="main.php"> <!--refresh page when submitted-->
-    <input type="hidden" id="countTupleRequest" name="countTupleRequest">
-    <input type="submit" name="countTuples"></p>
-</form>
-
-
-<h2>Display all the movies with their info</h2>
-<form method="GET" action="main.php"> <!--refresh page when submitted-->
-    <input type="hidden" id="displayTupleRequest" name="displayTupleRequest">
-    <input type="submit" value = "display" name="displayTuples"></p>
-</form>
-
+<h2><?php $result = executePlainSQL("SELECT Count(*) FROM MOVIEBASICINFO");
+    if (($row = oci_fetch_row($result)) != false)
+        echo "<br> All " . $row[0] . " movies:<br>";
+    ?>
+    <?php $result = executePlainSQL("SELECT * FROM MOVIEBASICINFO");
+    $col = 10;
+    showTable($result, $col);
+    ?>
+</h2>
+<hr>
 
 <form class="form-horizontal" method="POST" action="#">
     <input type="hidden" id="searchRequest" name="searchRequest">
@@ -114,23 +108,6 @@ echo "<hr />";
 
 <?php
 
-
-function handleCountRequest() {
-    global $db_conn;
-
-    $result = executePlainSQL("SELECT Count(*) FROM MOVIEBASICINFO");
-
-    if (($row = oci_fetch_row($result)) != false) {
-        echo "<br> The number of movies: " . $row[0] . "<br>";
-    }
-}
-
-function handleDisplayRequest(){
-    $result = executePlainSQL("SELECT * FROM MOVIEBASICINFO");
-    $col = 10;
-    showTable($result, $col);
-}
-
 function handleSearchRequest(){
     echo "check 0";
     generalQueryAndDisplay();
@@ -171,23 +148,16 @@ function handlePOSTRequest() {
 // A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
 function handleGETRequest() {
     if (connectToDB()) {
-        if (array_key_exists('countTuples', $_GET)) {
-            handleCountRequest();
-        } else if(array_key_exists('displayTuples',$_GET)){
-            handleDisplayRequest();
-        }
+
         disconnectFromDB();
     }
 }
 
 if (isset($_POST['searchRequest']) || isset($_POST['catRequest']) || isset($_POST['allReviewRequest']) || isset($_POST['wellCatRequest'])){
     handlePOSTRequest();
-} else if (isset($_GET['countTupleRequest']) || isset($_GET['displayTupleRequest'])
-) {///
+} else if (0) {
     handleGETRequest();
 }
 ?>
 </body>
 </html>
-
-
