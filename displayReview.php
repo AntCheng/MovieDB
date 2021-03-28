@@ -9,6 +9,8 @@ include 'dbh.php';
 </head>
 
 <body>
+<link rel="stylesheet" href="./file/css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/style.css">
 
 <?php
 $mid = $_GET[mid];

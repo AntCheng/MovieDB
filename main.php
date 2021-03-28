@@ -1,6 +1,10 @@
 <?php
 include 'dbh.php';
 include 'queryDisplay.php';
+
+$uid = $_GET[uid];
+echo "Hello, ".$uid. "<br>";
+echo "<hr />";
 ?>
 
 
@@ -91,7 +95,6 @@ include 'queryDisplay.php';
 
         <?php
 
-        echo $_GET[uid];
 
         function handleCountRequest() {
             global $db_conn;
