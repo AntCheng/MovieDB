@@ -35,8 +35,8 @@ echo "<hr />";
         <select id="filter_category" class="form-control" name="filter_category">
             <option value="" disabled selected hidden>choose category</option>
             <option value="">n/a</option>
-            <option value="Fantasy">Crime</option>
-            <option value="Fantasy">Disaster</option>
+            <option value="Crime">Crime</option>
+            <option value="Disaster">Disaster</option>
             <option value="Fantasy">Fantasy</option>
             <?php echo "some function here" ?>
             <option value="all">All Category</option>
