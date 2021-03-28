@@ -114,22 +114,18 @@ function disconnectFromDB() {
     OCILogoff($db_conn);
 }
 
-function showTable($r, $c){
-    $result = $r;
-    $colums = $c;
+function showTable($r, $c) {
     echo "<table>";
-    for ($i = 1; $i <= $colums; $i++){
-        $field_name = oci_field_name($result,$i);
+    for ($i = 1; $i <= $c; $i++){
+        $field_name = oci_field_name($r, $i);
         echo "<th>$field_name</th>";
     }
     echo "</tr>";
-    while($row = oci_fetch_row($result)){
-        for($i = 0; $i < $colums; $i++){
+    while($row = oci_fetch_row($r)){
+        for($i = 0; $i < $c; $i++){
             echo "<td>$row[$i]</td>";
         }
         echo "</tr>";
     }
     echo "</table>";
 }
-
-?>
