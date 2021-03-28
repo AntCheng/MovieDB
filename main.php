@@ -30,9 +30,11 @@ include 'queryDisplay.php';
 								<div class="form_input">
 									<select id="filter_category" class="form-control" name="filter_category">
 										<option value="" disabled selected hidden>choose category</option>
-										<option value="">n/a</option> 
-                                        <option value="Fantasy">Fantasy</option> 
-									    <?php echo "some function here" ?>
+										<option value="">n/a</option>
+                                        <option value="Fantasy">Crime</option>
+                                        <option value="Fantasy">Disaster</option>
+                                        <option value="Fantasy">Fantasy</option>
+                                        <?php echo "some function here" ?>
 										<option value="all">All Category</option> 
 									</select>
 								</div>
@@ -40,25 +42,34 @@ include 'queryDisplay.php';
 								<div class="form_input">
 									<select id="filter_country" class="form-control" name="filter_country">
 										<option value="" disabled selected hidden>choose country</option>
-										<option value="">n/a</option> 
-										<?php "some function here" ?>
+										<option value="">n/a</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="China">China</option>
+                                        <option value="USA">USA</option>
+                                        <?php "some function here" ?>
 	                				</select>
 								</div>
 								<hr>
 								<div class="form_input">
 									<select id="filter_year" class="form-control" name="filter_year">
 										<option value="" disabled selected hidden>choose year</option>
-										<option value="">n/a</option> 
-                                        <option value="2020">2020</option> 
-										<?php "year function()" ?>
+										<option value="">n/a</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <?php "year function()" ?>
 	                				</select>
 								</div>
 								<hr>
 								<div class="form_input">
 									<select id="filter_rating" class="form-control" name="filter_rating">
 										<option value="" disabled selected hidden>choose Rating</option>
-										<option value="">n/a</option> 
-										<option value=5>5</option> 
+										<option value="">n/a</option>
+                                        <option value=10>10</option>
+                                        <option value=9>9</option>
+                                        <option value=8>8</option>
+                                        <option value=7>7</option>
+                                        <option value=6>6</option>
+                                        <option value=5>5</option>
 										<option value=4>4</option> 
 										<option value=3>3</option> 
 										<option value=2>2</option> 
