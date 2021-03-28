@@ -19,7 +19,7 @@ function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL com
     connectToDB();
     global $db_conn, $success;
 
-    $statement = OCIParse($db_conn, $cmdstr); 
+    $statement = OCIParse($db_conn, $cmdstr);
     //There are a set of comments at the end of the file that describe some of the OCI specific functions and how they work
 
     if (!$statement) {
@@ -94,7 +94,7 @@ function connectToDB() {
 
     // Your username is ora_(CWL_ID) and the password is a(student number). For example, 
     // ora_platypus is the username and a12345678 is the password.
-    $db_conn = OCILogon("ora_ryang07", "a21315726", "dbhost.students.cs.ubc.ca:1522/stu");
+    $db_conn = OCILogon("ora_guorunhe", "a17975517", "dbhost.students.cs.ubc.ca:1522/stu");
 
     if ($db_conn) {
         debugAlertMessage("Database is Connected");
@@ -112,6 +112,24 @@ function disconnectFromDB() {
 
     debugAlertMessage("Disconnect from Database");
     OCILogoff($db_conn);
+}
+
+function showTable($r, $c){
+    $result = $r;
+    $colums = $c;
+    echo "<table>";
+    for ($i = 1; $i <= $colums; $i++){
+        $field_name = oci_field_name($result,$i);
+        echo "<th>$field_name</th>";
+    }
+    echo "</tr>";
+    while($row = oci_fetch_row($result)){
+        for($i = 0; $i < $colums; $i++){
+            echo "<td>$row[$i]</td>";
+        }
+        echo "</tr>";
+    }
+    echo "</table>";
 }
 
 ?>
