@@ -71,7 +71,7 @@ include 'queryDisplay.php';
 								</div>
 								<hr>
 								<div class="form_input">
-									Most reviewed: <input type="checkbox" id="filter_maxActivities" name="filter_maxActivities">
+									Most reviewed: <input type="checkbox" id="filter_mostreviewd" name="filter_mostreviewd">
 								</div>
 								<hr>
 								<input type="submit" name="search" value="search" class="btn btn-primary"/>

@@ -66,7 +66,7 @@ WHERE NOT EXISTS((SELECT u.AccountNumber
 SELECT mm.MovieID
 FROM (SELECT m.MovieID, max(rating)
       FROM MovieBasicInfo m --sql , moviebsaicinfo m
-      GROUP BY Categories) as mm;
+      GROUP BY Categories) mm;
 
 
 
@@ -92,6 +92,6 @@ SELECT sd.MovieID
 FROM (SELECT m.MOVIEID, Count(*) as nreview
       FROM MovieBasicInfo m, RREVIEW r
       WHERE m.MovieID = r.MovieID
-      GROUP BY m.MOVIEID) As sd
+      GROUP BY m.MOVIEID) sd
 WHERE sd.nreview = (SELECT max(sd.nreview)
                    FROM sd);

@@ -25,6 +25,31 @@ function generalQueryAndDisplay(){
     if($rating!=""){
         $sql .= "AND m.rating = '" .$_POST['filter_rating']. "'";
     }
+
+    /*
+    SELECT mm.MovieID
+FROM (SELECT m.MovieID, max(rating)
+      FROM MovieBasicInfo m --sql , moviebsaicinfo m
+      GROUP BY Categories) as mm;
+    */
+    //Try to find the max rating movie given some movieID
+    if(isset($_POST['filter_topRating'])){
+        $sql =  
+        "SELECT mb.MovieID
+        FROM ($sql) nm, MovieBasicInfo mb
+        WHERE nm.MovieID = mb.MovieID AND NOT EXISTS (SELECT * FROM ($sql) nm2, MovieBasicInfo mb2 WHERE nm2.MovieID = mb2.MovieID AND mb2.rating > mb.rating)";
+    }
+
+    if(isset($_POST['filter_mostreviewd'])){
+        $sql = 
+        "SELECT sd.MovieID
+        FROM (SELECT nm.MOVIEID, Count(*) AS nreview
+              FROM ($sql) nm, RREVIEW r
+              WHERE nm.MovieID = r.MovieID
+              GROUP BY nm.MOVIEID) sd
+        WHERE sd.nreview = (SELECT max(sd.nreview) FROM sd)";
+    }
+    
     echo "check 2";
     Display($sql);
 }
