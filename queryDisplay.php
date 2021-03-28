@@ -41,15 +41,20 @@ FROM (SELECT m.MovieID, max(rating)
     }
 
     if(isset($_POST['filter_mostreviewd'])){
-        $sql = 
-        "SELECT sd.MovieID
-        FROM (SELECT nm.MOVIEID, Count(*) AS nreview
-              FROM ($sql) nm, RREVIEW r
-              WHERE nm.MovieID = r.MovieID
-              GROUP BY nm.MOVIEID) sd
-        WHERE sd.nreview = (SELECT max(sd.nreview) FROM sd)";
+        $sql =
+            "WITH sd AS (
+                        SELECT m.MOVIEID, Count(*) as nreview
+                        FROM ($sql) m, RREVIEW r
+                        WHERE m.MovieID = r.MovieID
+                        GROUP BY m.MOVIEID)
+            SELECT sd.MovieID
+            FROM  sd
+            WHERE sd.nreview = (SELECT max(sd.nreview)
+                                FROM sd)";
+
+
     }
-    
+
     echo "check 2";
     Display($sql);
 }
