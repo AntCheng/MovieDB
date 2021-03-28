@@ -20,6 +20,14 @@ $url = "main.php?uid=".urlencode($uid);
     <div class="form-group">
         <label><h2>Rating:</h2></label>
         <div class="form_input">
+            <input type="radio" name="rating" value="1">
+            <label for="1"> 1</label><br>
+            <input type="radio" name="rating" value="2">
+            <label for="2"> 2</label><br>
+            <input type="radio" name="rating" value="3">
+            <label for="3"> 3</label><br>
+            <input type="radio" name="rating" value="4">
+            <label for="4"> 4</label><br>
             <input type="radio" name="rating" value="5">
             <label for="5"> 5</label><br>
             <input type="radio" name="rating" value="6">
@@ -80,12 +88,12 @@ function handleMapRequest(){
         exit;
     } else {
         $Rating = (int) $Rating;
-
+        $accountNumber = 0;
         $raw_accountNumber = executePlainSQL("SELECT AccountNumber FROM Users WHERE Names = '$uid'");
         if (($row = oci_fetch_row($raw_accountNumber)) != false) {
-             $accountNumber = $row[0];
+            $accountNumber = $row[0];
         }
-
+        $number = 0;
         $raw_number = executePlainSQL("SELECT COUNT(*) FROM RReview");
         while (($row = oci_fetch_row($raw_number)) != false) {
             $number = $row[0];
@@ -122,12 +130,12 @@ function handlePOSTRequest() {
 // HANDLE ALL GET ROUTES
 // A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
 function handleGETRequest() {
-/*    if (connectToDB()) {
-        if(array_key_exists('displayReviews',$_GET)){
-            handleDisplayRequest();
-        }
-        disconnectFromDB();
-    }*/
+    /*    if (connectToDB()) {
+            if(array_key_exists('displayReviews',$_GET)){
+                handleDisplayRequest();
+            }
+            disconnectFromDB();
+        }*/
 }
 
 
