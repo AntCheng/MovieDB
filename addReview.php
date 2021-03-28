@@ -72,7 +72,7 @@ $url = "main.php?uid=".urlencode($uid);
 
 
 function handleMapRequest() {
-    global $db_conn;///
+    global $db_conn;
     global $mid;
     global $uid;
 
