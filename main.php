@@ -87,6 +87,25 @@ echo "<hr />";
 </form>
 
 
+<h2>Find the best rating movie in each category</h2>
+<form method="POST" action="main.php"> <!--refresh page when submitted-->
+    <input type="hidden" id="catRequest" name="catRequest">
+    <input type="submit" value = "display" name="category_best"></p>
+</form>
+
+<h2>Find the movies that have been reviewed by all eusers</h2>
+<form method="POST" action="main.php"> <!--refresh page when submitted-->
+    <input type="hidden" id="allReviewRequest" name="allReviewRequest">
+    <input type="submit" value = "display" name="allReview"></p>
+</form>
+
+<h2>Find the welcome Category</h2>
+<form method="POST" action="main.php"> <!--refresh page when submitted-->
+    <input type="hidden" id="wellCatRequest" name="wellCatRequest">
+    <input type="submit" value = "display" name="wellCat"></p>
+</form>
+
+
 <?php
 
 function handleSearchRequest(){
@@ -94,6 +113,17 @@ function handleSearchRequest(){
     generalQueryAndDisplay();
 }
 
+function handleCatRequest(){
+    queryCatRequest();
+}
+
+function handleAllReviewRequest(){
+    queryAllReview();
+}
+
+function handleWelcomeCatRequest(){
+    queryWelcomeCat();
+}
 // HANDLE ALL POST ROUTES
 // A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
 function handlePOSTRequest() {
@@ -103,6 +133,12 @@ function handlePOSTRequest() {
         if (array_key_exists('search', $_POST)) {
             echo "check -1";
             handleSearchRequest();
+        }else if(array_key_exists('category_best',$_POST)){
+            handleCatRequest();
+        }else if(array_key_exists('allReview',$_POST)){
+            handleAllReviewRequest();
+        }else if(array_key_exists('wellCat',$_POST)){
+            handleWelcomeCatRequest();
         }
         disconnectFromDB();
     }
@@ -117,8 +153,7 @@ function handleGETRequest() {
     }
 }
 
-if (isset($_POST['searchRequest'])){
-    echo "before handle request call";
+if (isset($_POST['searchRequest']) || isset($_POST['catRequest']) || isset($_POST['allReviewRequest']) || isset($_POST['wellCatRequest'])){
     handlePOSTRequest();
 } else if (0) {
     handleGETRequest();
