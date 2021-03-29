@@ -196,19 +196,38 @@ INSERT INTO MovieCompanyInfo
 VALUES ('Endgame', 2021, 40000);
 INSERT INTO MovieCompanyInfo
 VALUES ('The Yinyang Master', 2021, 50000);
-
+INSERT INTO MovieCompanyInfo
+VALUES ('Justice League', 2017, 50000);
+INSERT INTO MovieCompanyInfo
+VALUES ('Nomadland', 2020, 40000);
+INSERT INTO MovieCompanyInfo
+VALUES ('The Grizzlies', 2018, 20000);
+INSERT INTO MovieCompanyInfo
+VALUES ('Glass', 2019, 20000);
+INSERT INTO MovieCompanyInfo
+VALUES ('The Last Emperor', 1987, 50000);
 
 -- MovieBasicInfo  (Title, Years, MovieID, Lengths, Categories, Country, Rating, NumberOfUpvotes, NumberOfWatching, NumberOfComments)
 INSERT INTO MovieBasicInfo
-VALUES ('Monster Hunter', 2020, 1, 104, 'Fantasy', 'Canada', 9.6, 452, 2542, 432);
+VALUES ('Monster Hunter', 2020, 1, 104, 'Fantasy', 'Canada', 9, 0, 0, 0);
 INSERT INTO MovieBasicInfo
-VALUES ('Greenland', 2020, 2, 119, 'Disaster', 'USA', 8.0, 785, 4287, 7369);
+VALUES ('Greenland', 2020, 2, 119, 'Disaster', 'USA', 8, 0, 0, 0);
 INSERT INTO MovieBasicInfo
-VALUES ('The Little Things', 2021, 3, 128, 'Crime', 'USA', 10.0, 214, 7827, 736);
+VALUES ('The Little Things', 2021, 3, 128, 'Crime', 'USA', 10, 0, 0, 0);
 INSERT INTO MovieBasicInfo
-VALUES ('Endgame', 2021, 4, 119, 'Crime', 'China', 9.8, 524, 3456, 738);
+VALUES ('Endgame', 2021, 4, 119, 'Crime', 'China', 9, 0, 0, 0);
 INSERT INTO MovieBasicInfo
-VALUES ('The Yinyang Master', 2021, 5, 120, 'Fantasy', 'China', 9.4, 724, 45634, 7436);
+VALUES ('The Yinyang Master', 2021, 5, 120, 'Fantasy', 'China', 9, 0, 0, 0);
+INSERT INTO MovieBasicInfo
+VALUES ('Justice League', 2017, 6, 120, 'Action', 'USA', 9, 0, 0, 0);
+INSERT INTO MovieBasicInfo
+VALUES ('Nomadland', 2020, 7, 107, 'Drama', 'USA', 9, 0, 0, 0);
+INSERT INTO MovieBasicInfo
+VALUES ('The Grizzlies', 2018, 8, 120, 'Drama', 'Canada', 7, 0, 0, 0);
+INSERT INTO MovieBasicInfo
+VALUES ('Glass', 2019, 9, 129, 'Sci-Fi', 'USA', 6, 0, 0, 0);
+INSERT INTO MovieBasicInfo
+VALUES ('The Last Emperor', 1987, 10, 219, 'Drama', 'China', 7, 0, 0, 0);
 
 
 -- RMContain (RankingID, MovieID)
@@ -246,46 +265,50 @@ VALUES (5, 5);
 
 -- User (AccountNumber, Names, Passwords)
 INSERT INTO Users
-VALUES (692630, 'ERburETE', 'Kc0I8iYM2*xgw^s14Mn');
+VALUES (1, 'Anthony', 'P1');
 INSERT INTO Users
-VALUES (469738, 'ndRIzErT', 'sbYvvY*NvoeaBH70Ew1');
+VALUES (2, 'Josh', 'P2');
 INSERT INTO Users
-VALUES (279183, 'terThisk', 'QYXwgaT*NLQYGmor@$@');
+VALUES (3, 'Ray', 'P3');
 INSERT INTO Users
-VALUES (628591, 'OMeragMa', 'gnEvZg^VBRrgupsfiF*L');
+VALUES (4, 'Mark', 'rrrml123@ii');
 INSERT INTO Users
-VALUES (904166, 'OMEISMIc', '*XD*7E@Hx6ZJ#B28dZEt');
+VALUES (5, 'Frank', 'plplai991919');
+INSERT INTO Users
+VALUES (6, 'Jim', 'pihfb$#12');
+INSERT INTO Users
+VALUES (7, 'Bob', 'etfp155');
 
 
 -- Watch (MovieID, AccountNumber, Dates)
 INSERT INTO Watch
-VALUES (1, 904166, '14-Apr-2021');
+VALUES (1, 1, '14-Apr-2021');
 INSERT INTO Watch
-VALUES (1, 469738, '16-Apr-2021');
+VALUES (1, 6, '16-Apr-2021');
 INSERT INTO Watch
-VALUES (1, 628591, '28-Apr-2021');
+VALUES (1, 3, '28-Apr-2021');
 INSERT INTO Watch
-VALUES (1, 279183, '11-May-2021');
+VALUES (1, 4, '11-May-2021');
 INSERT INTO Watch
-VALUES (2, 692630, '10-Jun-2021');
+VALUES (2, 5, '10-Jun-2021');
 INSERT INTO Watch
-VALUES (2, 279183, '20-Jun-2021');
+VALUES (2, 6, '20-Jun-2021');
 INSERT INTO Watch
-VALUES (2, 469738, '19-Jul-2021');
+VALUES (2, 2, '19-Jul-2021');
 INSERT INTO Watch
-VALUES (3, 628591, '21-Jul-2021');
+VALUES (3, 4, '21-Jul-2021');
 INSERT INTO Watch
-VALUES (4, 628591, '22-Jul-2021');
+VALUES (4, 5, '22-Jul-2021');
 INSERT INTO Watch
-VALUES (4, 692630, '1-Oct-2021');
+VALUES (4, 6, '1-Oct-2021');
 INSERT INTO Watch
-VALUES (5, 692630, '3-Oct-2021');
+VALUES (5, 7, '3-Oct-2021');
 INSERT INTO Watch
-VALUES (5, 469738, '27-Oct-2021');
+VALUES (5, 5, '27-Oct-2021');
 INSERT INTO Watch
-VALUES (5, 279183, '30-Oct-2021');
+VALUES (5, 1, '30-Oct-2021');
 INSERT INTO Watch
-VALUES (5, 628591, '8-Nov-2021');
+VALUES (5, 2, '8-Nov-2021');
 
 
 -- HistoryList (ListID)
@@ -303,43 +326,71 @@ VALUES (55);
 
 -- FavouriteList (ListID, Description)
 INSERT INTO FavouriteList
-VALUES (111, 'dfasfd');
+VALUES (111, 'My favourite action movies');
 INSERT INTO FavouriteList
-VALUES (222, 'eragvaazvfr');
+VALUES (222, 'My favourite dramas');
 INSERT INTO FavouriteList
-VALUES (333, 'frtgbs');
+VALUES (333, 'Starring Jackie Chen');
 INSERT INTO FavouriteList
-VALUES (444, 'xfdhbh');
+VALUES (444, 'My favourite fiction movies');
 INSERT INTO FavouriteList
-VALUES (555, 'szfhgt');
+VALUES (555, 'Oscars');
 INSERT INTO FavouriteList
-VALUES (6666, 'aaaaaaaaaaa');
+VALUES (6666, 'Oscars');
 
 
 -- RReview (NumberOfLike, NumberOfDislike, Content, Dates, Rating, ReviewID, MovieID, AccountNumber)
 INSERT INTO RReview
-VALUES (0, 0, 'Good 0 ...', '1-Jan-2021', 8, 1, 1, 904166);
+VALUES (0, 0, 'Good  movie!', '1-Jan-2021', 8, 1, 1, 1);
 INSERT INTO RReview
-VALUES (0, 0, 'Good 1 ...', '2-Jan-2021', 9, 2, 1, 469738);
+VALUES (0, 0, 'Great!!!', '2-Jan-2021', 9, 2, 1, 5);
 INSERT INTO RReview
-VALUES (0, 0, 'Bad 00 ...', '1-Jan-2021', 3, 3, 1, 628591);
+VALUES (0, 0, 'Bad :( ', '1-Jan-2021', 3, 3, 1, 6);
 INSERT INTO RReview
-VALUES (0, 0, 'Good 2 ...', '4-Jan-2021', 7, 4, 4, 279183);
+VALUES (0, 0, 'Just so so', '4-Jan-2021', 7, 4, 4, 2);
 INSERT INTO RReview
-VALUES (0, 0, 'Bad 01 ...', '6-Jan-2021', 4, 5, 3, 469738);
+VALUES (0, 0, 'Bad! ...', '6-Jan-2021', 4, 5, 3, 1);
+INSERT INTO RReview
+VALUES (0, 0, 'Terrible ...', '6-Jan-2021', 3, 6, 3, 4);
+INSERT INTO RReview
+VALUES (0, 0, 'Not a movie ...', '6-Jan-2021', 4, 7, 2, 6);
+INSERT INTO RReview
+VALUES (0, 0, 'Bad 01 ...', '6-Jan-2021', 4, 8, 2, 4);
+INSERT INTO RReview
+VALUES (0, 0, 'Bad 01 ...', '1-Jan-2021', 4, 9, 5, 2);
+INSERT INTO RReview
+VALUES (0, 0, 'Good overall', '3-Jan-2021', 7, 10, 3, 3);
+INSERT INTO RReview
+VALUES (0, 0, 'Good casting.', '9-Jan-2021', 8, 11, 6, 2);
+INSERT INTO RReview
+VALUES (0, 0, 'Not very good.', '2-Jan-2021', 5, 12, 7, 5);
+INSERT INTO RReview
+VALUES (0, 0, 'Excellent!', '6-Jan-2021', 9, 13, 8, 7);
 
 
 -- CComment (NumberOfLike, NumberOfDisLike, Content, Dates, CommentID, ReviewID, AccountNumber)
 INSERT INTO CComment
-VALUES (0, 0, 'Agree 0', '1-Feb-2021', 1000, 100, 469738);
+VALUES (0, 0, 'Agree 0', '1-Feb-2021', 1000, 3, 1);
 INSERT INTO CComment
-VALUES (0, 0, 'Agree 1', '2-Feb-2021', 1001, 100, 904166);
+VALUES (0, 0, 'Agree 1', '2-Feb-2021', 1001, 2, 2);
 INSERT INTO CComment
-VALUES (0, 0, 'Noooooo', '1-Feb-2021', 1002, 102, 692630);
+VALUES (0, 0, 'Noooooo', '1-Feb-2021', 1002, 1, 2);
 INSERT INTO CComment
-VALUES (0, 0, 'ABCDEFG', '9-Jan-2021', 1003, 103, 628591);
+VALUES (0, 0, 'Disagree', '9-Jan-2021', 1003, 3, 4);
 INSERT INTO CComment
-VALUES (0, 0, 'NOPEEEE', '8-Jan-2021', 1004, 103, 279183);
+VALUES (0, 0, 'NOPEEEE', '8-Jan-2021', 1004, 4, 5);
+INSERT INTO CComment
+VALUES (0, 0, 'Interesting review', '8-Jan-2021', 1005, 6, 5);
+INSERT INTO CComment
+VALUES (0, 0, 'Interesting review!', '8-Jan-2021', 1006, 5, 7);
+INSERT INTO CComment
+VALUES (0, 0, 'Well said!', '8-Jan-2021', 1007, 8, 3);
+INSERT INTO CComment
+VALUES (0, 0, 'Well said!', '8-Jan-2021', 1008, 13, 4);
+INSERT INTO CComment
+VALUES (0, 0, 'Disagree', '9-Jan-2021', 1009, 12, 6);
+INSERT INTO CComment
+VALUES (0, 0, 'Disagree!!', '9-Jan-2021', 1010, 2, 4);
 
 
 -- DiscussionGroup (GroupID, GroupName)
@@ -357,62 +408,62 @@ VALUES (5, 'Super Group 4');
 
 -- DiscussionContent (ContentID, GroupID, AccountNumber, Content, Dates)
 INSERT INTO DiscussionContent
-VALUES (5000, 1, 279183, 'I like this movie', '2-Feb-2021');
+VALUES (5000, 1, 1, 'I like this movie', '2-Feb-2021');
 INSERT INTO DiscussionContent
-VALUES (5001, 1, 904166, 'aaaaaaaa', '2-Feb-2021');
+VALUES (5001, 1, 3, 'aaaaaaaa', '2-Feb-2021');
 INSERT INTO DiscussionContent
-VALUES (5002, 3, 279183, 'hhhhhhhhhhhh', '30-Jan-2021');
+VALUES (5002, 3, 5, 'hhhhhhhhhhhh', '30-Jan-2021');
 INSERT INTO DiscussionContent
-VALUES (5003, 4, 692630, 'GOOD GOOD GOOD', '5-Feb-2021');
+VALUES (5003, 4, 7, 'GOOD GOOD GOOD', '5-Feb-2021');
 INSERT INTO DiscussionContent
-VALUES (5004, 4, 692630, 'tgf34gt34wftgwr3t', '8-Feb-2021');
+VALUES (5004, 4, 2, 'tgf34gt34wftgwr3t', '8-Feb-2021');
 
 
 -- MovieList (ListID, AccountNumber)
 INSERT INTO MovieList
-VALUES (11, 904166);
+VALUES (11, 1);
 INSERT INTO MovieList
-VALUES (111, 904166);
+VALUES (111, 4);
 INSERT INTO MovieList
-VALUES (22, 469738);
+VALUES (22, 5);
 INSERT INTO MovieList
-VALUES (33, 279183);
+VALUES (33, 2);
 INSERT INTO MovieList
-VALUES (333, 279183);
+VALUES (333, 6);
 INSERT INTO MovieList
-VALUES (44, 628591);
+VALUES (44, 3);
 INSERT INTO MovieList
-VALUES (6666, 628591);
+VALUES (6666, 7);
 
 
 -- MMcontain (MovieID, ListID, AccountNumber)
 INSERT INTO MMcontain
-VALUES (1, 11, 904166);
+VALUES (1, 11, 1);
 INSERT INTO MMcontain
-VALUES (3, 11, 904166);
+VALUES (3, 11, 1);
 INSERT INTO MMcontain
-VALUES (3, 111, 904166);
+VALUES (3, 111, 4);
 INSERT INTO MMcontain
-VALUES (4, 111, 904166);
+VALUES (4, 111, 4);
 INSERT INTO MMcontain
-VALUES (1, 22, 469738);
+VALUES (1, 22, 5);
 INSERT INTO MMcontain
-VALUES (2, 22, 469738);
+VALUES (2, 22, 5);
 INSERT INTO MMcontain
-VALUES (3, 22, 469738);
+VALUES (3, 22, 5);
 INSERT INTO MMcontain
-VALUES (4, 22, 469738);
+VALUES (4, 22, 5);
 INSERT INTO MMcontain
-VALUES (5, 22, 469738);
+VALUES (5, 22, 5);
 INSERT INTO MMcontain
-VALUES (4, 33, 279183);
+VALUES (4, 33, 2);
 INSERT INTO MMcontain
-VALUES (4, 333, 279183);
+VALUES (4, 333, 6);
 INSERT INTO MMcontain
-VALUES (1, 44, 628591);
+VALUES (1, 44, 3);
 INSERT INTO MMcontain
-VALUES (1, 6666, 628591);
+VALUES (1, 6666, 7);
 INSERT INTO MMcontain
-VALUES (3, 6666, 628591);
+VALUES (3, 6666, 7);
 INSERT INTO MMcontain
-VALUES (4, 6666, 4);
+VALUES (4, 6666, 7);
