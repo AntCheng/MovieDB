@@ -88,19 +88,19 @@ echo "<hr />";
 
 
 <h2>Find the best rating movie in each category</h2>
-<form method="POST" action="main.php"> <!--refresh page when submitted-->
+<form method="POST" action="#"> <!--refresh page when submitted-->
     <input type="hidden" id="catRequest" name="catRequest">
     <input type="submit" value = "display" name="category_best"></p>
 </form>
 
 <h2>Find the movies that have been reviewed by all eusers</h2>
-<form method="POST" action="main.php"> <!--refresh page when submitted-->
+<form method="POST" action="#"> <!--refresh page when submitted-->
     <input type="hidden" id="allReviewRequest" name="allReviewRequest">
     <input type="submit" value = "display" name="allReview"></p>
 </form>
 
 <h2>Find the welcome Category</h2>
-<form method="POST" action="main.php"> <!--refresh page when submitted-->
+<form method="POST" action="#"> <!--refresh page when submitted-->
     <input type="hidden" id="wellCatRequest" name="wellCatRequest">
     <input type="submit" value = "display" name="wellCat"></p>
 </form>

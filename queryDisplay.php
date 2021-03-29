@@ -40,6 +40,7 @@ FROM (SELECT m.MovieID, max(rating)
         WHERE nm.MovieID = mb.MovieID AND NOT EXISTS (SELECT * FROM ($sql) nm2, MovieBasicInfo mb2 WHERE nm2.MovieID = mb2.MovieID AND mb2.rating > mb.rating)";
     }
 
+    //Find the most reviewed movies
     if(isset($_POST['filter_mostreviewd'])){
         $sql =
             "WITH sd AS (
