@@ -15,32 +15,37 @@ $url = "main.php?uid=".urlencode($uid);
     <title> Review and Rate </title>
 </head>
 
-</body>
+<body>
 <form method="post" action=>
     <div class="form-group">
-        <label><h2>Rating:</h2></label>
-        <div class="form_input">
-            <input type="radio" name="rating" value="1">
-            <label for="1"> 1</label><br>
-            <input type="radio" name="rating" value="2">
-            <label for="2"> 2</label><br>
-            <input type="radio" name="rating" value="3">
-            <label for="3"> 3</label><br>
-            <input type="radio" name="rating" value="4">
-            <label for="4"> 4</label><br>
-            <input type="radio" name="rating" value="5">
-            <label for="5"> 5</label><br>
-            <input type="radio" name="rating" value="6">
-            <label for="6"> 6</label><br>
-            <input type="radio" name="rating" value="7">
-            <label for="7"> 7</label><br>
-            <input type="radio" name="rating" value="8">
-            <label for="8"> 8</label><br>
-            <input type="radio" name="rating" value="9">
-            <label for="9"> 9</label><br>
-            <input type="radio" name="rating" value="10">
-            <label for="10"> 10</label><br>
-        </div>
+        <label><h2>Rating: from 1 to 10</h2></label>
+        <form method="POST">
+            <!-- <div class="form_input">
+                <input type="radio" name="rating" value="1">
+                <label for="1"> 1</label><br>
+                <input type="radio" name="rating" value="2">
+                <label for="2"> 2</label><br>
+                <input type="radio" name="rating" value="3">
+                <label for="3"> 3</label><br>
+                <input type="radio" name="rating" value="4">
+                <label for="4"> 4</label><br>
+                <input type="radio" name="rating" value="5">
+                <label for="5"> 5</label><br>
+                <input type="radio" name="rating" value="6">
+                <label for="6"> 6</label><br>
+                <input type="radio" name="rating" value="7">
+                <label for="7"> 7</label><br>
+                <input type="radio" name="rating" value="8">
+                <label for="8"> 8</label><br>
+                <input type="radio" name="rating" value="9">
+                <label for="9"> 9</label><br>
+                <input type="radio" name="rating" value="10">
+                <label for="10"> 10</label><br>
+            </div> -->
+
+            <input type="range" min="1" max="10" step="1" value="1" id="rating" name="rating" style="width:500px" onchange='document.getElementById("r").value = document.getElementById("rating").value;'/>
+            <input type="text" name="r" id="r" value="1" size="1" style="border:3px solid #FB6107; width:35px; font-size: 20px; background-color: #1BE7FF; text-align: center;" disabled/>
+            <br/>
     </div>
     <div class="form-group">
         <label><h2>Review:</h2></label>
@@ -50,22 +55,8 @@ $url = "main.php?uid=".urlencode($uid);
     </div>
     <input type="submit" class="btn btn-primary" name="submit">
 </form>
-
+</body>
 <hr />
-
-<!--<h2>Rate the movie</h2>
-<form action="displayReview.php" method="post">
-
-</form>
-
-<h2>Write your review!</h2>
-<form action="displayReview.php" method="post">
-    <label for="review">your review:</label><br>
-    <textarea name="review" rows="20" cols="40"></textarea>
-    <br><br>
-    <input type="submit" value = "Submit" name="mapReviews"></p>
-</form>-->
-
 
 
 <?php
@@ -82,22 +73,27 @@ function handleMapRequest() {
     if ($Review === "") {
         echo 'please write a review, try again!';
         exit;
-    } else if ($Rating === "") {
+    } else if ($Rating === 0) {
         echo 'please give a rating, try again!';
         exit;
     } else {
         $Rating = (int) $Rating;
+        $uid = $_GET['uid'];
         $accountNumber = 0;
+
+        // get account number
         $raw_accountNumber = executePlainSQL("SELECT AccountNumber FROM Users WHERE Names = '$uid'");
         if (($row = oci_fetch_row($raw_accountNumber)) != false) {
             $accountNumber = $row[0];
         }
+        // get number of reviews
         $number = 0;
         $raw_number = executePlainSQL("SELECT COUNT(*) FROM RReview");
         while (($row = oci_fetch_row($raw_number)) != false) {
             $number = $row[0];
         }
         $number++;   // set review id to be #of current reviews + 1
+
         $date = date('j-M-Y');
         executePlainSQL("INSERT INTO RReview
                             VALUES (0, 0, '$Review', '$date', $Rating, '$number', '$mid', '$accountNumber')");
@@ -155,5 +151,6 @@ if (isset($_POST['submit']) || isset($_POST['return'])) {
     <input type="hidden" id="backRequest" name="backRequest">
     <input type="submit" value = "Back" name="return"></p>
 </form>
+
 
 </html>

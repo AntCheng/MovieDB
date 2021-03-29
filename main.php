@@ -2,9 +2,7 @@
 include 'dbh.php';
 include 'queryDisplay.php';
 
-$uid = $_GET[uid];
-echo "Hello, ".$uid. "<br>";
-echo "<hr />";
+displayHeader();
 ?>
 
 
@@ -152,6 +150,20 @@ function handleGETRequest() {
         disconnectFromDB();
     }
 }
+
+function displayHeader() {
+    $uid = $_GET[uid];
+    echo "Hello, ".$uid;
+
+    $url_user = "account.php?uid=".urlencode($_GET[uid]);
+    $userCenter = '<form method="POST" action='.$url_user.'>';
+    $userCenter .= '<object height="1" hspace="350"></object>';
+    $userCenter .= "Update your password or reviews";
+    $userCenter .=  '<input type="submit" value="Go" name="go">';
+    $userCenter .=  '</form>';
+    echo $userCenter.'<hr />';
+}
+
 
 if (isset($_POST['searchRequest']) || isset($_POST['catRequest']) || isset($_POST['allReviewRequest']) || isset($_POST['wellCatRequest'])){
     handlePOSTRequest();
