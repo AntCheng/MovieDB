@@ -116,7 +116,7 @@ CREATE TABLE RReview
     AccountNumber   INT,
     FOREIGN KEY (AccountNumber) REFERENCES Users (AccountNumber),
     FOREIGN KEY (MovieID) REFERENCES MovieBasicInfo (MovieID)
-        ON DELETE CASCADE
+
 );
 
 CREATE TABLE CComment
@@ -130,6 +130,7 @@ CREATE TABLE CComment
     AccountNumber   INT,
     FOREIGN KEY (AccountNumber) REFERENCES Users (AccountNumber),
     FOREIGN KEY (ReviewID) REFERENCES RReview (ReviewID)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE DiscussionGroup
