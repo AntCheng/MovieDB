@@ -40,6 +40,7 @@ FROM (SELECT m.MovieID, max(rating)
         WHERE nm.MovieID = mb.MovieID AND NOT EXISTS (SELECT * FROM ($sql) nm2, MovieBasicInfo mb2 WHERE nm2.MovieID = mb2.MovieID AND mb2.rating > mb.rating)";
     }
 
+    //Find the most reviewed movies
     if(isset($_POST['filter_mostreviewd'])){
         $sql =
             "WITH sd AS (
@@ -84,7 +85,7 @@ function Display($sql){
         $targetMovie .=  '</form>';
     }
     if($empty ==0){
-        echo "<h2>Unfortunely, No such movies in the database</h2>";
+        echo "<h2>Unfortunately, No such movies in the database</h2>";
     }
     echo $targetMovie;
 
@@ -123,6 +124,3 @@ function queryWelcomeCat(){
         echo "$row[0]   &nbsp;&nbsp;";
     }
 }
-
-
-?>
