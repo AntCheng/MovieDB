@@ -53,12 +53,12 @@ displayHeader();
         <select id="filter_year" class="form-control" name="filter_year">
             <option value="" disabled selected hidden>choose year</option>
             <option value="">n/a</option>
-            <option value="2021">2020</option>
-            <option value="2020">2021</option>
-            <option value="2019">2021</option>
-            <option value="2018">2021</option>
-            <option value="2017">2021</option>
-            <option value="1987">2021</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="1987">1987</option>
             <?php "year function()" ?>
         </select>
     </div>
