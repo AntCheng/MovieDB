@@ -116,6 +116,7 @@ CREATE TABLE RReview
     AccountNumber   INT,
     FOREIGN KEY (AccountNumber) REFERENCES Users (AccountNumber),
     FOREIGN KEY (MovieID) REFERENCES MovieBasicInfo (MovieID)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE CComment
