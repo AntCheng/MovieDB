@@ -30,6 +30,9 @@ displayHeader();
             <option value="Crime">Crime</option>
             <option value="Disaster">Disaster</option>
             <option value="Fantasy">Fantasy</option>
+            <option value="Action">Fantasy</option>
+            <option value="Drama">Fantasy</option>
+            <option value="Sci-Fi">Fantasy</option>
             <?php echo "some function here" ?>
             <option value="all">All Category</option>
         </select>
