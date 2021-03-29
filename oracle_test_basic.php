@@ -9,7 +9,7 @@
         <hr />
 
          <!-- create an account and accountID is a random number generated based on username-->
-        <h2>If you do not have an account, please sign up</h2>
+        <h2>If you do not have an account, please sign up!</h2>
         <form method="POST" action="oracle_test_basic.php"> <!--refresh page when submitted-->
             <input type="hidden" id="insertQueryRequest" name="insertQueryRequest"> 
             Username: <input type="text" name="Names"> <br /><br />
@@ -20,7 +20,7 @@
 
         <hr />
 
-        <h2>If you already have an account, please click log in.</h2>
+        <h2>If you already have an account, please click log in!</h2>
         <input type="button" onclick="window.location.href='login.php'" value="Log In">
 
 
@@ -115,5 +115,3 @@
 		?>
 	</body>
 </html>
-
-
