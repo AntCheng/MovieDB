@@ -1,4 +1,4 @@
--- ALTER SESSION SET NLS_LANGUAGE='AMERICAN';
+alter session set nls_language = 'English'
 
 CREATE TABLE Ranking
 (
