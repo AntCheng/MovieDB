@@ -92,7 +92,7 @@ function handleMapRequest() {
         while (($row = oci_fetch_row($raw_number)) != false) {
             $number = $row[0];
         }
-        $number++;   // set review id to be #of current reviews + 1
+        $number = 2 * $number + 1;   // set review id to be 2 * #of current reviews + 1
 
         $date = date('j-M-Y');
         executePlainSQL("INSERT INTO RReview
