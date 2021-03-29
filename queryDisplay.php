@@ -85,7 +85,7 @@ function Display($sql){
         $targetMovie .=  '</form>';
     }
     if($empty ==0){
-        echo "<h2>Unfortunely, No such movies in the database</h2>";
+        echo "<h2>Unfortunately, No such movies in the database</h2>";
     }
     echo $targetMovie;
 
@@ -124,6 +124,3 @@ function queryWelcomeCat(){
         echo "$row[0]   &nbsp;&nbsp;";
     }
 }
-
-
-?>
