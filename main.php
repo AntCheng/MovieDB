@@ -9,112 +9,137 @@ displayHeader();
 <html>
 <head>
     <title>Movie Info</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<h2><?php $result = executePlainSQL("SELECT Count(*) FROM MOVIEBASICINFO");
-    if (($row = oci_fetch_row($result)) != false)
-        echo "<br> All " . $row[0] . " movies:<br>";
-    ?>
-    <?php $result = executePlainSQL("SELECT * FROM MOVIEBASICINFO");
-    $col = 10;
-    showTable($result, $col);
-    ?>
-</h2>
+
+<p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Display all movies
+    </button>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <h4><?php $result = executePlainSQL("SELECT Count(*) FROM MOVIEBASICINFO");
+            if (($row = oci_fetch_row($result)) != false)
+                echo "<br> All " . $row[0] . " movies:<br>";
+            ?>
+            <?php $result = executePlainSQL("SELECT * FROM MOVIEBASICINFO");
+            $col = 10;
+            showTable($result, $col);
+            ?>
+        </h4>
+    </div>
+</div>
+
+
 <hr>
+  <div class="container">
 
-<form class="form-horizontal" method="POST" action="#">
-    <input type="hidden" id="searchRequest" name="searchRequest">
-    <div class="form_input">
-        <select id="filter_category" class="form-control" name="filter_category">
-            <option value="" disabled selected hidden>choose category</option>
-            <option value="">n/a</option>
-            <option value="Crime">Crime</option>
-            <option value="Disaster">Disaster</option>
-            <option value="Fantasy">Fantasy</option>
-            <option value="Action">Action</option>
-            <option value="Drama">Drama</option>
-            <option value="Sci-Fi">Sci-Fi</option>
-            <?php echo "some function here" ?>
+    <form class="form-horizontal" method="POST" action="#">
+        <input type="hidden" id="searchRequest" name="searchRequest">
+        <div class="form_input">
+            <select id="filter_category" class="form-control" name="filter_category">
+                <option value="" disabled selected hidden>choose category</option>
+                <option value="">n/a</option>
+                <option value="Crime">Crime</option>
+                <option value="Disaster">Disaster</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Action">Action</option>
+                <option value="Drama">Drama</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <?php echo "some function here" ?>
             <option value="all">All Category</option>
-        </select>
-    </div>
-    <hr>
-    <div class="form_input">
-        <select id="filter_country" class="form-control" name="filter_country">
-            <option value="" disabled selected hidden>choose country</option>
-            <option value="">n/a</option>
-            <option value="Canada">Canada</option>
-            <option value="China">China</option>
-            <option value="USA">USA</option>
-            <?php "some function here" ?>
-        </select>
-    </div>
-    <hr>
-    <div class="form_input">
-        <select id="filter_year" class="form-control" name="filter_year">
-            <option value="" disabled selected hidden>choose year</option>
-            <option value="">n/a</option>
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-            <option value="2017">2017</option>
-            <option value="1987">1987</option>
-            <?php "year function()" ?>
-        </select>
-    </div>
-    <hr>
-    <div class="form_input">
-        <select id="filter_rating" class="form-control" name="filter_rating">
-            <option value="" disabled selected hidden>choose Rating</option>
-            <option value="">n/a</option>
-            <option value=10>10</option>
-            <option value=9>9</option>
-            <option value=8>8</option>
-            <option value=7>7</option>
-            <option value=6>6</option>
-            <option value=5>5</option>
-            <option value=4>4</option>
-            <option value=3>3</option>
-            <option value=2>2</option>
-            <option value=1>1</option>
-        </select>
-    </div>
-    <hr>
-    <div class="form_input">
+            </select>
+        </div>
+        <hr>
+        <div class="form_input">
+            <select id="filter_country" class="form-control" name="filter_country">
+                <option value="" disabled selected hidden>choose country</option>
+                <option value="">n/a</option>
+                <option value="Canada">Canada</option>
+                <option value="China">China</option>
+                <option value="USA">USA</option>
+                <?php "some function here" ?>
+            </select>
+        </div>
+        <hr>
+        <div class="form_input">
+            <select id="filter_year" class="form-control" name="filter_year">
+                <option value="" disabled selected hidden>choose year</option>
+                <option value="">n/a</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="1987">1987</option>
+                <?php "year function()" ?>
+            </select>
+        </div>
+        <hr>
+        <div class="form_input">
+            <select id="filter_rating" class="form-control" name="filter_rating">
+                <option value="" disabled selected hidden>choose Rating</option>
+                <option value="">n/a</option>
+                <option value=10>10</option>
+                <option value=9>9</option>
+                <option value=8>8</option>
+                <option value=7>7</option>
+                <option value=6>6</option>
+                <option value=5>5</option>
+                <option value=4>4</option>
+                <option value=3>3</option>
+                <option value=2>2</option>
+                <option value=1>1</option>
+            </select>
+        </div>
+
+
+
+
+      <hr>
+      <div class="form_input">
         Top User Rated: <input type="checkbox" id="filter_topRating" name="filter_topRating">
-    </div>
-    <hr>
-    <div class="form_input">
+      </div>
+      <hr>
+      <div class="form_input">
         Most reviewed: <input type="checkbox" id="filter_mostreviewd" name="filter_mostreviewd">
-    </div>
-    <hr>
-    <input type="submit" name="search" value="search" class="btn btn-primary"/>
-</form>
+      </div>
+      <hr>
+      <input type="submit" name="search" value="search" class="btn btn-primary"/>
+    </form>
+  </div>
 
+  <div class="container">
 
-<h2>Find the best rating movie in each category</h2>
+    <h4>Find the best rating movie in each category</h4>
 <form method="POST" action="#"> <!--refresh page when submitted-->
     <input type="hidden" id="catRequest" name="catRequest">
     <input type="submit" value = "display" name="category_best"></p>
 </form>
 
-<h2>Find the movies that have been reviewed by all users</h2>
+<h4>Find the movies that have been reviewed by all users</h4>
 <form method="POST" action="#"> <!--refresh page when submitted-->
     <input type="hidden" id="allReviewRequest" name="allReviewRequest">
     <input type="submit" value = "display" name="allReview"></p>
 </form>
 
-<h2>Find the welcome category</h2>
+<h4>Find the welcome category</h4>
 <form method="POST" action="#"> <!--refresh page when submitted-->
     <input type="hidden" id="wellCatRequest" name="wellCatRequest">
     <input type="submit" value = "display" name="wellCat"></p>
 </form>
-
+  </div>
 
 <?php
 
 function handleSearchRequest(){
-    echo "check 0";
+    //echo "check 0";
     generalQueryAndDisplay();
 }
 
@@ -132,11 +157,11 @@ function handleWelcomeCatRequest(){
 // HANDLE ALL POST ROUTES
 // A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
 function handlePOSTRequest() {
-    echo "check before connectDB";
+    //echo "check before connectDB";
     if (connectToDB()) {
-        echo "check0.0";
+        //echo "check0.0";
         if (array_key_exists('search', $_POST)) {
-            echo "check -1";
+            //echo "check -1";
             handleSearchRequest();
         }else if(array_key_exists('category_best',$_POST)){
             handleCatRequest();

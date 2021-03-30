@@ -6,7 +6,7 @@ function generalQueryAndDisplay(){
     
     $sql = "SELECT m.MovieID FROM MovieBasicInfo m WHERE m.Years>0";
     $isAND = "check 1";
-    echo $isAND;
+    //echo $isAND;
 
     $category = (isset($_POST['filter_category'])) ? $_POST['filter_category'] : "";
 	$country = (isset($_POST['filter_country'])) ? $_POST['filter_country'] : "";
@@ -56,19 +56,19 @@ FROM (SELECT m.MovieID, max(rating)
     }
 
 
-    echo "check 2";
+    //echo "check 2";
     Display($sql);
 }
 
 function Display($sql){
-    echo $_GET[uid];
-    echo "check 3";
+    //echo $_GET[uid];
+    //echo "check 3";
     //require 'dbh.php';
-    echo 'check 4';
-    $targetMovie = "<h2>Movies</h2>";
-    echo 'check 5';
+    //echo 'check 4';
+    $targetMovie = "<h2>Search result</h2>";
+    //echo 'check 5';
     $result = executePlainSQL($sql);
-    echo 'check 6';
+    //echo 'check 6';
     $empty = 0;
     while(($row = oci_fetch_row($result)) != false){
         // echo $row[0];
@@ -77,7 +77,7 @@ function Display($sql){
         $movieInfo = oci_fetch_row($movieInfo);
         // echo $movieInfo[0];
         //echo $movieInfo['TITLE'];
-        $targetMovie .=  '<h2>'.$movieInfo[0].'</h2>';
+        $targetMovie .=  '<h4><i>'.$movieInfo[0].'</i></h4>';
         $url = "displayReview.php?mid=".urlencode($movieInfo[2])."&uid=".urlencode($_GET[uid]);
         $targetMovie .=  '<form method="POST" action='.$url.'>';
         //$targetMovie .=  '<form method="POST" action="displayReview.php?mid='.$movieInfo[2].'"&uid="'..'">';
@@ -85,7 +85,7 @@ function Display($sql){
         $targetMovie .=  '</form>';
     }
     if($empty ==0){
-        echo "<h2>Unfortunately, No such movies in the database</h2>";
+        echo "<h4><i>Unfortunately, No such movies in the database</i></h4>";
     }
     echo $targetMovie;
 
@@ -118,7 +118,7 @@ function queryWelcomeCat(){
     FROM MovieBasicInfo
     GROUP BY Categories
     HAVING avg(rating) > (SELECT avg(rating) FROM MovieBasicInfo)";
-    echo "<h3> The welcome categories are: </h3>";
+    echo "<h3><i> The welcome categories are: </i></h3>";
     $result = executePlainSQL($sql);
     while(($row = oci_fetch_row($result)) != false){
         echo "$row[0]   &nbsp;&nbsp;";

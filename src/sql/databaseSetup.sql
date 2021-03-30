@@ -41,6 +41,7 @@ CREATE TABLE MovieBasicInfo
     NumberOfUpvotes   INT DEFAULT 0,
     NumberOfWatchings INT DEFAULT 0,
     NumberOfComments  INT DEFAULT 0,
+    url               VARCHAR(1000),
     FOREIGN KEY (Title, Years) REFERENCES MovieCompanyInfo (Title, Years),
     FOREIGN KEY (Country) REFERENCES MovieCountryInfo (Country)
         ON DELETE CASCADE
@@ -208,27 +209,27 @@ VALUES ('Glass', 2019, 20000);
 INSERT INTO MovieCompanyInfo
 VALUES ('The Last Emperor', 1987, 50000);
 
--- MovieBasicInfo  (Title, Years, MovieID, Lengths, Categories, Country, Rating, NumberOfUpvotes, NumberOfWatching, NumberOfComments)
+-- MovieBasicInfo  (Title, Years, MovieID, Lengths, Categories, Country, Rating, NumberOfUpvotes, NumberOfWatching, NumberOfComments, url)
 INSERT INTO MovieBasicInfo
-VALUES ('Monster Hunter', 2020, 1, 104, 'Fantasy', 'Canada', 9, 0, 0, 0);
+VALUES ('Monster Hunter', 2020, 1, 104, 'Fantasy', 'Canada', 9, 0, 0, 0, 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSaB4uEmVrC_YTHxGJI1TgrP1rQ3XDO6yd26lUKmJM_5f2NrpTY');
 INSERT INTO MovieBasicInfo
-VALUES ('Greenland', 2020, 2, 119, 'Disaster', 'USA', 8, 0, 0, 0);
+VALUES ('Greenland', 2020, 2, 119, 'Disaster', 'USA', 8, 0, 0, 0, 'https://static.wikia.nocookie.net/fanmade-films-4/images/0/00/Greenland_2020_poster.jpg/revision/latest/scale-to-width-down/490?cb=20200825202553');
 INSERT INTO MovieBasicInfo
-VALUES ('The Little Things', 2021, 3, 128, 'Crime', 'USA', 10, 0, 0, 0);
+VALUES ('The Little Things', 2021, 3, 128, 'Crime', 'USA', 10, 0, 0, 0, 'https://images.radio.com/aiu-media/TheLittleThings011921-3ceaa9a4-27a3-4ff6-817a-dfa778e38a10.png');
 INSERT INTO MovieBasicInfo
-VALUES ('Endgame', 2021, 4, 119, 'Crime', 'China', 9, 0, 0, 0);
+VALUES ('Endgame', 2021, 4, 119, 'Crime', 'China', 9, 0, 0, 0, 'https://upload.wikimedia.org/wikipedia/en/2/24/Endgame.jpeg');
 INSERT INTO MovieBasicInfo
-VALUES ('The Yinyang Master', 2021, 5, 120, 'Fantasy', 'China', 9, 0, 0, 0);
+VALUES ('The Yinyang Master', 2021, 5, 120, 'Fantasy', 'China', 9, 0, 0, 0, 'https://pics.filmaffinity.com/the_yin_yang_master_aka_the_yinyang_master-199349142-mmed.jpg');
 INSERT INTO MovieBasicInfo
-VALUES ('Justice League', 2017, 6, 120, 'Action', 'USA', 9, 0, 0, 0);
+VALUES ('Justice League', 2017, 6, 120, 'Action', 'USA', 9, 0, 0, 0, 'https://static.rogerebert.com/uploads/movie/movie_poster/justice-league-2017/large_justice_league_ver20.jpg');
 INSERT INTO MovieBasicInfo
-VALUES ('Nomadland', 2020, 7, 107, 'Drama', 'USA', 9, 0, 0, 0);
+VALUES ('Nomadland', 2020, 7, 107, 'Drama', 'USA', 9, 0, 0, 0, 'https://pics.filmaffinity.com/Nomadland-118487105-mmed.jpg');
 INSERT INTO MovieBasicInfo
-VALUES ('The Grizzlies', 2018, 8, 120, 'Drama', 'Canada', 7, 0, 0, 0);
+VALUES ('The Grizzlies', 2018, 8, 120, 'Drama', 'Canada', 7, 0, 0, 0, 'https://i.ytimg.com/vi/vv8PI_ryHwA/movieposter_en.jpg');
 INSERT INTO MovieBasicInfo
-VALUES ('Glass', 2019, 9, 129, 'Sci-Fi', 'USA', 6, 0, 0, 0);
+VALUES ('Glass', 2019, 9, 129, 'Sci-Fi', 'USA', 6, 0, 0, 0, 'https://thevisionmsms.org/wp-content/uploads/2019/02/glass.jpg');
 INSERT INTO MovieBasicInfo
-VALUES ('The Last Emperor', 1987, 10, 219, 'Drama', 'China', 7, 0, 0, 0);
+VALUES ('The Last Emperor', 1987, 10, 219, 'Drama', 'China', 7, 0, 0, 0, 'https://img.discogs.com/U2b5tYGsaUhAhVRL0JT4fdtwc94=/fit-in/590x585/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2558807-1425740716-6146.jpeg.jpg');
 
 
 -- RMContain (RankingID, MovieID)

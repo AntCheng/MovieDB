@@ -13,12 +13,16 @@ $url = "main.php?uid=".urlencode($uid);
 
 <head>
     <title> Review and Rate </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 <form method="post" action=>
     <div class="form-group">
-        <label><h2>Rating: from 1 to 10</h2></label>
+        <label><h4>Rating: from 1 to 10</h4></label>
         <form method="POST">
             <!-- <div class="form_input">
                 <input type="radio" name="rating" value="1">
@@ -48,10 +52,10 @@ $url = "main.php?uid=".urlencode($uid);
             <br/>
     </div>
     <div class="form-group">
-        <label><h2>Review:</h2></label>
+        <label><h4>Review:</h4></label>
         <br>
 
-        <textarea class="form-control" name="review" rows="20" cols="40"></textarea><br>
+        <textarea class="form-control" name="review" rows="10" cols="20"></textarea><br>
     </div>
     <input type="submit" class="btn btn-primary" name="submit">
 </form>
