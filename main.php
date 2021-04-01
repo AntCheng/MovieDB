@@ -17,6 +17,10 @@ displayHeader();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
+
+
+
+
 <p>
     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Display all movies
@@ -38,6 +42,16 @@ displayHeader();
 </div>
 
   <hr>
+  <!-- Background image -->
+<div
+    class="bg-image"
+    style="
+            background-image: url('https://uploadfile.bizhizu.cn/up/d5/b5/a5/d5b5a5bd4e3245e1596b73ffa12f6ed4.jpg');
+            height: 95vh;
+            "
+    >
+
+<!-- Background image -->
 <div class="containner">
 
   <div class="container">
@@ -133,6 +147,7 @@ displayHeader();
         <input type="hidden" id="wellCatRequest" name="wellCatRequest">
         <input type="submit" value = "display" name="wellCat"></p>
     </form>
+</div>
 </div>
 
 <?php
