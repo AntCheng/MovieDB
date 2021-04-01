@@ -4,6 +4,15 @@ include 'dbh.php';
 
 <html>
 
+<style>
+    body {
+        background-image: url('img/background2.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
+
 <head>
     <title>Review Page</title>
 </head>
@@ -47,7 +56,7 @@ function displayMovieInfo(){
         // echo $movieInfo[0];
         //echo $movieInfo['TITLE'];
         $url = "displayReview.php?mid=".urlencode($movieInfo[2])."&uid=".urlencode($_GET[uid]);
-        $targetMovie .= '<div class="row">';
+        $targetMovie = '<div class="row">';
         $targetMovie .=     '<div class="col-4">';
         $targetMovie .=     '<img class="mov-pic" src="'.$movieInfo[7].'"  width="200" height="250">';
         $targetMovie .=     '</div>';

@@ -10,7 +10,14 @@ $url = "main.php?uid=".urlencode($uid);
 
 
 <html>
-
+<style>
+    body {
+        background-image: url('img/background3.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
 <head>
     <title> Review and Rate </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -59,7 +66,7 @@ $url = "main.php?uid=".urlencode($uid);
     </div>
     <input type="submit" class="btn btn-primary" name="submit">
 </form>
-</body>
+
 <hr />
 
 
@@ -156,5 +163,5 @@ if (isset($_POST['submit']) || isset($_POST['return'])) {
     <input type="submit" value = "Back" name="return"></p>
 </form>
 
-
+</body>
 </html>

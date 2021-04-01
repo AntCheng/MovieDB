@@ -6,31 +6,36 @@ echo "Hello, ".$uid. "<br>";
 echo "<hr />";
 
 ?>
-
+<style>
+    body {
+        background-image: url('img/background.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
 <html>
-<head>
+  <head>
     <title> User center </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
+  </head>
 
-<body>
-<h2><i>Update your password</i></h2>
-<form action="#" method="post">
-    <label for="password">New password:</label><br>
-    <textarea name="new" rows="1" cols="20" maxlength="20"></textarea>
-    <br><br>
-    <input type="submit" value = "Submit" name="newPassword"></p>
-</form>
-<hr />
-<!--<h3>Delete a review</h3>
-<form method="POST" action="main.php">
-    <input type="hidden" id="deleteReviewRequest" name="deleteReviewRequest">
-    <input type="submit" value = "Delete" name="deleteReview"></p>
-</form>-->
+  <body>
+    <h2><i>Update your password</i></h2>
+    <form action="#" method="post">
+        <label for="password">New password:</label><br>
+        <textarea name="new" rows="1" cols="20" maxlength="20"></textarea>
+        <br><br>
+        <input type="submit" value = "Submit" name="newPassword"></p>
+    </form>
+    <hr />
 
+  </body>
+
+</html>
 <?php
 $accountNumber = 0;
 
@@ -57,13 +62,14 @@ function deleteRow($rid) {
 
 // helper: display a table of reviews with delete options
 function showReviewTable($r) {
-
-    echo "<table>";
+    echo "<table style='width:100%' class='table table-stripe'>";
+    echo "<thead class='thead-dark'><tr>";
     for ($i = 1; $i <= 4; $i++){
-        $field_name = oci_field_name($r, $i);
+        $field_name = ucwords(strtolower(oci_field_name($r, $i)));
         echo "<th>$field_name</th>";
     }
-    echo "</tr>";
+    echo "</tr></thead>";
+    echo "<tbody><tr>";
     while($row = oci_fetch_row($r)){
         for($i = 0; $i < 4; $i++){
             echo "<td>$row[$i]</td>";
@@ -71,7 +77,7 @@ function showReviewTable($r) {
         deleteRow($row[3]);
         echo "</tr>";
     }
-    echo "</table>";
+    echo "</tbody></table>";
 }
 
 // helper: back to main page
@@ -186,6 +192,3 @@ if (isset($_POST['newPassword']) || isset($_POST['delete'])){
 
 
 
-</body>
-
-</html>
