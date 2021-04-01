@@ -2,6 +2,21 @@
 include 'dbh.php';
 ?>
 
+
+<head>
+    <title>Movie Info</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<div class="container-fluid">
+    <img src="./img/abstractPic.jpg" class="img-fluid" alt="the background">
+    <div class="row justify-content-md-center">
+    <div class="col-md-auto">
     <title>Welcome! Please login!</title>
     <h2>Welcome! Please login!</h2>
     <form action="login.php" method="post">
@@ -12,6 +27,9 @@ include 'dbh.php';
         <input type="password" name="Passwords">
         <br /><br />
         <input type="submit" name="login" value="Log In">
+    </div>
+    </div>
+</div>
 
 <?php
 

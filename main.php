@@ -37,10 +37,10 @@ displayHeader();
     </div>
 </div>
 
-
   <hr>
-  <div class="container">
+<div class="containner">
 
+  <div class="container">
     <form class="form-horizontal" method="POST" action="#">
         <input type="hidden" id="searchRequest" name="searchRequest">
         <div class="form_input">
@@ -99,10 +99,6 @@ displayHeader();
                 <option value=1>1</option>
             </select>
         </div>
-
-
-
-
       <hr>
       <div class="form_input">
         Top User Rated: <input type="checkbox" id="filter_topRating" name="filter_topRating">
@@ -115,6 +111,7 @@ displayHeader();
       <input type="submit" name="search" value="search" class="btn btn-primary"/>
     </form>
   </div>
+</div>
 
 <div class="container">
 
