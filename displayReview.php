@@ -40,7 +40,42 @@ function displayReviewSingleMovie() {
     showTable($result, $c, false);
 }
 
+function displayMovieInfo(){
+    global $mid;
+        $movieInfo = executePlainSQL('SELECT * FROM MovieBasicInfo m WHERE m.MovieID ='.$mid);
+        $movieInfo = oci_fetch_row($movieInfo);
+        // echo $movieInfo[0];
+        //echo $movieInfo['TITLE'];
+        $url = "displayReview.php?mid=".urlencode($movieInfo[2])."&uid=".urlencode($_GET[uid]);
+        $targetMovie .= '<div class="row">';
+        $targetMovie .=     '<div class="col-4">';
+        $targetMovie .=     '<img class="mov-pic" src="'.$movieInfo[7].'"  width="200" height="250">';
+        $targetMovie .=     '</div>';
+        
+        $targetMovie .=     '<div class="col-8">';
+        $targetMovie .=         '<p><i>'.$movieInfo[0].'</i></p>';
+        $targetMovie .=         '<p><i>'.$movieInfo[1].'</i></p>';
+        $targetMovie .=         '<p><i>'.$movieInfo[3].'</i></p>';
+        $targetMovie .=         '<p><i>'.$movieInfo[4].'</i></p>';
+        $targetMovie .=         '<p><i>'.$movieInfo[5].'</i></p>';
+        $targetMovie .=         '<p><i>'.$movieInfo[6].'</i></p>';
 
+        $targetMovie .=         '<form method="POST" action='.$url.'>';
+        //$targetMovie .=  '<form method="POST" action="displayReview.php?mid='.$movieInfo[2].'"&uid="'..'">';
+        $targetMovie .=         '<input type="submit" value="moreInfo" name="moreInfo"></p>';
+        $targetMovie .=         '</form>';
+        $targetMovie .=     '</div>';
+
+        $targetMovie .= '</div>';
+        $targetMovie .= '<hr>';
+
+        echo '<div class="container">';
+        echo $targetMovie;
+        echo '</div>';
+
+}
+
+displayMovieInfo();
 displayMovieName();
 displayReviewSingleMovie();
 
