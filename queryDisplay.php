@@ -133,6 +133,6 @@ function queryWelcomeCat(){
     echo "<h3><i> The welcome categories are: </i></h3>";
     $result = executePlainSQL($sql);
     while(($row = oci_fetch_row($result)) != false){
-        echo "$row[0]   &nbsp;&nbsp;";
+        echo "<h3><i> $row[0]   &nbsp;&nbsp;<h3><i>";
     }
 }
