@@ -30,7 +30,7 @@ displayHeader();
             echo '<hr>';
             ?>
             <?php $result = executePlainSQL("SELECT * FROM MOVIEBASICINFO");
-            $col = 10;
+            $col = 7;
             showTable($result, $col, true);
             ?>
         </h4>
