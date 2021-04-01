@@ -115,26 +115,27 @@ displayHeader();
     </form>
   </div>
 
-  <div class="container">
+<div class="container">
+
 
     <h4>Find the best rating movie in each category</h4>
-<form method="POST" action="#"> <!--refresh page when submitted-->
-    <input type="hidden" id="catRequest" name="catRequest">
-    <input type="submit" value = "display" name="category_best"></p>
-</form>
+    <form method="POST" action="#"> <!--refresh page when submitted-->
+        <input type="hidden" id="catRequest" name="catRequest">
+        <input type="submit" value = "display" name="category_best"></p>
+    </form>
 
-<h4>Find the movies that have been reviewed by all users</h4>
-<form method="POST" action="#"> <!--refresh page when submitted-->
-    <input type="hidden" id="allReviewRequest" name="allReviewRequest">
-    <input type="submit" value = "display" name="allReview"></p>
-</form>
+    <h4>Find the movies that have been reviewed by all users</h4>
+    <form method="POST" action="#"> <!--refresh page when submitted-->
+        <input type="hidden" id="allReviewRequest" name="allReviewRequest">
+        <input type="submit" value = "display" name="allReview"></p>
+    </form>
 
-<h4>Find the welcome category</h4>
-<form method="POST" action="#"> <!--refresh page when submitted-->
-    <input type="hidden" id="wellCatRequest" name="wellCatRequest">
-    <input type="submit" value = "display" name="wellCat"></p>
-</form>
-  </div>
+    <h4>Find the welcome category</h4>
+    <form method="POST" action="#"> <!--refresh page when submitted-->
+        <input type="hidden" id="wellCatRequest" name="wellCatRequest">
+        <input type="submit" value = "display" name="wellCat"></p>
+    </form>
+</div>
 
 <?php
 

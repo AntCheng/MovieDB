@@ -24,7 +24,7 @@ FROM MovieBasicInfo
 WHERE Years = '$Years';
 
 --T
--- Selection/Projection: Select the title of movies that are produced by a specific movie company
+-- Selection/Projection: Select the MovieID of movies that are produced by a specific movie company
 SELECT m.MovieID
 FROM MovieBasicInfo m,
 WHERE m.Country = '$Country';
