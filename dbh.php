@@ -114,21 +114,30 @@ function disconnectFromDB() {
     OCILogoff($db_conn);
 }
 
-function showTable($r, $c) {
-    echo "<table>";
+function showTable($r, $c, $pic) {
+    echo "<table style='width:100%' class='table table-striped'>";
+    echo "<thead class='thead-dark'><tr>";
     for ($i = 1; $i <= $c; $i++){
-        $field_name = oci_field_name($r, $i);
+        $field_name = ucwords(strtolower(oci_field_name($r, $i)));
         echo "<th>$field_name</th>";
     }
-    echo "</tr>";
+    if ($pic) {
+        echo "<th>Picture</th>";
+    }
+    echo "</tr></thead>";
+    echo "<tbody><tr>";
     while($row = oci_fetch_row($r)){
         for($i = 0; $i < $c; $i++){
             echo "<td>$row[$i]</td>";
         }
-
+        if ($pic) {
+            $out = '<td width="150" height="200">';
+            $out .= '<img src="'.$row[$c].'" width="150" height="200"/></td>';
+            echo $out;
+        }
         echo "</tr>";
     }
-    echo "</table>";
+    echo "</tbody></table>";
 }
 
 
