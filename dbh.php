@@ -94,7 +94,7 @@ function connectToDB() {
 
     // Your username is ora_(CWL_ID) and the password is a(student number). For example, 
     // ora_platypus is the username and a12345678 is the password.
-    $db_conn = OCILogon("ora_guorunhe", "a17975517", "dbhost.students.cs.ubc.ca:1522/stu");
+    $db_conn = OCILogon("ora_ryang07", "a21315726", "dbhost.students.cs.ubc.ca:1522/stu");
 
     if ($db_conn) {
         debugAlertMessage("Database is Connected");
@@ -114,18 +114,25 @@ function disconnectFromDB() {
     OCILogoff($db_conn);
 }
 
-function showTable($r, $c) {
+function showTable($r, $c, $pic) {
     echo "<table>";
     for ($i = 1; $i <= $c; $i++){
         $field_name = oci_field_name($r, $i);
         echo "<th>$field_name</th>";
+    }
+    if ($pic) {
+        echo "<th>Picture</th>";
     }
     echo "</tr>";
     while($row = oci_fetch_row($r)){
         for($i = 0; $i < $c; $i++){
             echo "<td>$row[$i]</td>";
         }
-
+        if ($pic) {
+            $out = '<td width="150" height="220">';
+            $out .= '<img src="'.$row[$c].'" width="150" height="220"/></td>';
+            echo $out;
+        }
         echo "</tr>";
     }
     echo "</table>";

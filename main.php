@@ -27,10 +27,11 @@ displayHeader();
         <h4><?php $result = executePlainSQL("SELECT Count(*) FROM MOVIEBASICINFO");
             if (($row = oci_fetch_row($result)) != false)
                 echo "<br> All " . $row[0] . " movies:<br>";
+            echo '<hr>';
             ?>
             <?php $result = executePlainSQL("SELECT * FROM MOVIEBASICINFO");
             $col = 10;
-            showTable($result, $col);
+            showTable($result, $col, true);
             ?>
         </h4>
     </div>

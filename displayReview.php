@@ -37,7 +37,7 @@ function displayReviewSingleMovie() {
     $result = executePlainSQL("SELECT u.Names, r.Dates, r.Content, r.ReviewID FROM RReview r, Users u
                                   WHERE (MovieID = '$mid' AND r.AccountNumber = u.AccountNumber)");
     $c = 4;
-    showTable($result, $c);
+    showTable($result, $c, false);
 }
 
 

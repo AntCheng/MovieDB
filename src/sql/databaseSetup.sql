@@ -213,7 +213,7 @@ VALUES ('The Last Emperor', 1987, 50000);
 INSERT INTO MovieBasicInfo
 VALUES ('Monster Hunter', 2020, 1, 104, 'Fantasy', 'Canada', 9, 0, 0, 0, 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSaB4uEmVrC_YTHxGJI1TgrP1rQ3XDO6yd26lUKmJM_5f2NrpTY');
 INSERT INTO MovieBasicInfo
-VALUES ('Greenland', 2020, 2, 119, 'Disaster', 'USA', 8, 0, 0, 0, 'https://static.wikia.nocookie.net/fanmade-films-4/images/0/00/Greenland_2020_poster.jpg/revision/latest/scale-to-width-down/490?cb=20200825202553');
+VALUES ('Greenland', 2020, 2, 119, 'Disaster', 'USA', 8, 0, 0, 0, 'https://i.pinimg.com/originals/68/1b/ff/681bfff6540dacf6dcf0d4822cb4cac9.jpg');
 INSERT INTO MovieBasicInfo
 VALUES ('The Little Things', 2021, 3, 128, 'Crime', 'USA', 10, 0, 0, 0, 'https://images.radio.com/aiu-media/TheLittleThings011921-3ceaa9a4-27a3-4ff6-817a-dfa778e38a10.png');
 INSERT INTO MovieBasicInfo
