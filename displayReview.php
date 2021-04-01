@@ -60,10 +60,6 @@ function displayMovieInfo(){
         $targetMovie .=         '<p><i>'.$movieInfo[5].'</i></p>';
         $targetMovie .=         '<p><i>'.$movieInfo[6].'</i></p>';
 
-        $targetMovie .=         '<form method="POST" action='.$url.'>';
-        //$targetMovie .=  '<form method="POST" action="displayReview.php?mid='.$movieInfo[2].'"&uid="'..'">';
-        $targetMovie .=         '<input type="submit" value="moreInfo" name="moreInfo"></p>';
-        $targetMovie .=         '</form>';
         $targetMovie .=     '</div>';
 
         $targetMovie .= '</div>';
