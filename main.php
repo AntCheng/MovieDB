@@ -38,7 +38,7 @@ displayHeader();
 </div>
 
 
-<hr>
+  <hr>
   <div class="container">
 
     <form class="form-horizontal" method="POST" action="#">

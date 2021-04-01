@@ -60,15 +60,9 @@ FROM (SELECT m.MovieID, max(rating)
     Display($sql);
 }
 
-function Display($sql){
-    //echo $_GET[uid];
-    //echo "check 3";
-    //require 'dbh.php';
-    //echo 'check 4';
+function Display($sql){  
     $targetMovie = "<h2>Search result</h2>";
-    //echo 'check 5';
     $result = executePlainSQL($sql);
-    //echo 'check 6';
     $empty = 0;
     while(($row = oci_fetch_row($result)) != false){
         // echo $row[0];
@@ -77,18 +71,36 @@ function Display($sql){
         $movieInfo = oci_fetch_row($movieInfo);
         // echo $movieInfo[0];
         //echo $movieInfo['TITLE'];
-        $targetMovie .=  '<h4><i>'.$movieInfo[0].'</i></h4>';
         $url = "displayReview.php?mid=".urlencode($movieInfo[2])."&uid=".urlencode($_GET[uid]);
-        $targetMovie .=  '<form method="POST" action='.$url.'>';
+        $targetMovie .= '<div class="row">';
+        $targetMovie .=     '<div class="col-4">';
+        $targetMovie .=     '<img class="mov-pic" src="'.$movieInfo[7].'"  width="200" height="250">';
+        $targetMovie .=     '</div>';
+        
+        $targetMovie .=     '<div class="col-8">';
+        $targetMovie .=         '<p><i>'.$movieInfo[0].'</i></p>';
+        $targetMovie .=         '<p><i>'.$movieInfo[1].'</i></p>';
+        $targetMovie .=         '<p><i>'.$movieInfo[3].'</i></p>';
+        $targetMovie .=         '<p><i>'.$movieInfo[4].'</i></p>';
+        $targetMovie .=         '<p><i>'.$movieInfo[5].'</i></p>';
+        $targetMovie .=         '<p><i>'.$movieInfo[6].'</i></p>';
+
+        $targetMovie .=         '<form method="POST" action='.$url.'>';
         //$targetMovie .=  '<form method="POST" action="displayReview.php?mid='.$movieInfo[2].'"&uid="'..'">';
-        $targetMovie .=     '<input type="submit" value="moreInfo" name="moreInfo"></p>';
-        $targetMovie .=  '</form>';
+        $targetMovie .=         '<input type="submit" value="moreInfo" name="moreInfo"></p>';
+        $targetMovie .=         '</form>';
+        $targetMovie .=     '</div>';
+
+        $targetMovie .= '</div>';
+        $targetMovie .= '<hr>';
+
     }
     if($empty ==0){
         echo "<h4><i>Unfortunately, No such movies in the database</i></h4>";
     }
+    echo '<div class="container">';
     echo $targetMovie;
-
+    echo '</div>';
 }
 
 function queryCatRequest(){
