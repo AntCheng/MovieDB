@@ -365,6 +365,14 @@ INSERT INTO RReview
 VALUES (0, 0, 'Not very good.', '2-Jan-2021', 5, 12, 7, 5);
 INSERT INTO RReview
 VALUES (0, 0, 'Excellent!', '6-Jan-2021', 9, 13, 8, 7);
+INSERT INTO RReview
+VALUES (0, 0, 'Very good!', '10-Jan-2021', 8, 14, 1, 2);
+INSERT INTO RReview
+VALUES (0, 0, 'Nice!', '13-Jan-2021', 8, 15, 1, 3);
+INSERT INTO RReview
+VALUES (0, 0, 'Wonderful!', '20-Jan-2021', 9, 16, 1, 4);
+INSERT INTO RReview
+VALUES (0, 0, 'Good  movie indeed!', '12-Jan-2021', 9, 17, 1, 7);
 
 
 -- CComment (NumberOfLike, NumberOfDisLike, Content, Dates, CommentID, ReviewID, AccountNumber)
