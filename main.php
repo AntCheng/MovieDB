@@ -46,8 +46,8 @@ displayHeader();
 <div
     class="bg-image"
     style="
-            background-image: url('https://uploadfile.bizhizu.cn/up/d5/b5/a5/d5b5a5bd4e3245e1596b73ffa12f6ed4.jpg');
-            height: 95vh;
+            background-image: url('img/cpsc304_racket.jpg');
+            height: 92vh;
             "
     >
 
