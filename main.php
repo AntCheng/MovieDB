@@ -5,8 +5,8 @@ include 'queryDisplay.php';
 displayHeader();
 ?>
 
-
 <html>
+
 <head>
     <title>Movie Info</title>
     <meta charset="utf-8">
@@ -15,18 +15,18 @@ displayHeader();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 
 
-
-
 <p>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#movies" aria-expanded="true" aria-controls="movies">
         Display all movies
     </button>
+    <hr>
 </p>
-<div class="collapse" id="collapseExample">
+<div class="collapse" id="movies">
     <div class="card card-body">
         <h4><?php $result = executePlainSQL("SELECT Count(*) FROM MOVIEBASICINFO");
             if (($row = oci_fetch_row($result)) != false)
@@ -40,7 +40,7 @@ displayHeader();
         </h4>
     </div>
 </div>
-
+<h4><i> Filter by conditions: </i></h4>
   <hr>
   <!-- Background image -->
 <div
@@ -52,9 +52,10 @@ displayHeader();
     >
 
 <!-- Background image -->
-<div class="containner">
+<div class="container">
 
   <div class="container">
+
     <form class="form-horizontal" method="POST" action="#">
         <input type="hidden" id="searchRequest" name="searchRequest">
         <div class="form_input">
@@ -150,6 +151,7 @@ displayHeader();
 </div>
 </div>
 
+
 <?php
 
 function handleSearchRequest(){
@@ -199,7 +201,8 @@ function handleGETRequest() {
 
 function displayHeader() {
     $uid = $_GET[uid];
-    echo "Hello, ".$uid;
+    echo '<span><div class="container-fluid">'."Hello, ".$uid;
+
 
     $url_user = "account.php?uid=".urlencode($_GET[uid]);
     $userCenter = '<form method="POST" action='.$url_user.'>';
@@ -207,7 +210,7 @@ function displayHeader() {
     $userCenter .= "Update your password or reviews";
     $userCenter .=  '<input type="submit" value="Go" name="go">';
     $userCenter .=  '</form>';
-    echo $userCenter.'<hr />';
+    echo $userCenter.'<hr /></div></span>';
 }
 
 
