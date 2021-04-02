@@ -18,7 +18,7 @@ displayHeader();
 
 </head>
 
-
+<body> 
 
 <p>
     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#movies" aria-expanded="true" aria-controls="movies">
@@ -47,7 +47,7 @@ displayHeader();
     class="bg-image"
     style="
             background-image: url('img/cpsc304_racket.jpg');
-            height: 92vh;
+            height: 100vh;
             "
     >
 
