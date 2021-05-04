@@ -1,3 +1,3 @@
 ## CPSC304 Project Group 6
-#  *Rate My Movies*
+#  *MoviesDB*
 a movie review and rating web application
