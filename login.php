@@ -45,7 +45,6 @@ function handleLoginRequest() {
     $q = executePlainSQL("SELECT Count(*) FROM Users WHERE (Users.names='$n' and Users.passwords='$p')");
     $result = oci_fetch_row($q);
     if ($result[0]==1) {
-        // updateUser($n, $p);
         echo "<br>Logged In Successfully!<br>";
         header('refresh:0.5; url=main.php?uid='.$n);
     } else if ($result[0] == 0) {
