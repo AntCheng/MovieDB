@@ -55,7 +55,6 @@ FROM (SELECT m.MovieID, max(rating)
 
     }
 
-
     //echo "check 2";
     Display($sql);
 }
