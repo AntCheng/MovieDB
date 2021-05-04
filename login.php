@@ -55,10 +55,6 @@ function handleLoginRequest() {
     OCICommit($db_conn);
 }
 
-// function updateUser($n, $p) {
-//     executePlainSQL("UPDATE CurrentUser c
-//               SET c.Names = '$n', c.Passwords = '$p'");
-// }
 
 function handlePOSTRequest() {
     if (connectToDB()) {
