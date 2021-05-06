@@ -2,7 +2,7 @@
 include 'dbh.php';
 
 $uid = $_GET['uid'];
-echo "Hello, ".$uid. "<br>";
+echo "Hello, "."<i>".$uid."</i><br>";
 echo "<hr />";
 
 ?>
@@ -14,6 +14,7 @@ echo "<hr />";
         background-attachment: fixed;
     }
 </style>
+
 <html>
   <head>
     <title> User center </title>
@@ -24,18 +25,16 @@ echo "<hr />";
   </head>
 
   <body>
-    <h2><i>Update your password</i></h2>
-    <form action="#" method="post">
-        <label for="password">New password:</label><br>
-        <textarea name="new" rows="1" cols="20" maxlength="20"></textarea>
-        <br><br>
-        <input type="submit" value = "Submit" name="newPassword"></p>
-    </form>
-    <hr />
+      <div class="container">
+        <h3><i>Update your password</i></h3>
+        <form action="#" method="post">
+            <label for="password">New password:</label><br>
+            <textarea name="new" rows="1" cols="20" maxlength="20"></textarea>
+            <br><br>
+            <input type="submit" value = "Submit" name="newPassword"></p>
+        </form>
+        <hr />
 
-  </body>
-
-</html>
 <?php
 $accountNumber = 0;
 
@@ -97,7 +96,7 @@ function displayReviewSingleUser() {
                                       FROM RReview r, MovieBasicInfo m
                                       WHERE (r.MovieID = m.MovieID AND r.AccountNumber = '$accountNumber')");
 
-    echo '<h2><i>Your reviews</i></h2><br>';
+    echo '<h3><i>Your reviews</i></h3><br>';
     echo '<hr />';
     showReviewTable($result);
     echo '<hr />';
@@ -113,7 +112,7 @@ function displayCommentSingleUser() {
                                       FROM RReview r, CComment c
                                       WHERE (r.ReviewID = c.ReviewID AND r.AccountNumber = '$accountNumber')");
     $c = 4;
-    echo '<h2><i>All comments associated with the your reviews</i></h2><br>';
+    echo '<h3><i>All comments associated with the your reviews</i></h3><br>';
     echo '<hr />';
     showTable($result, $c, false);
     echo '<hr />';
@@ -189,6 +188,8 @@ if (isset($_POST['newPassword']) || isset($_POST['delete'])){
 }
 
 ?>
+      </div>
+  </body>
 
-
+</html>
 

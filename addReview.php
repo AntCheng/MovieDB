@@ -3,7 +3,7 @@ include 'dbh.php';
 
 $mid = $_GET[mid];
 $uid = $_GET[uid];
-echo "Hello, ".$uid. "<br>";
+echo "Hello, "."<i>".$uid."</i><br>";
 echo "<hr />";
 $url = "main.php?uid=".urlencode($uid);
 ?>
@@ -28,21 +28,23 @@ $url = "main.php?uid=".urlencode($uid);
 
 <body>
 <form method="post" action=>
-    <div class="form-group">
-        <label><h4>Rating: from 1 to 10</h4></label>
-        <form method="POST">
+    <div class="container">
+        <div class="form-group">
+            <label><h4>Rating: from 1 to 10</h4></label>
+            <form method="POST">
 
-            <input type="range" min="1" max="10" step="1" value="1" id="rating" name="rating" style="width:500px" onchange='document.getElementById("r").value = document.getElementById("rating").value;'/>
-            <input type="text" name="r" id="r" value="1" size="1" style="border:3px solid #FB6107; width:35px; font-size: 20px; background-color: #1BE7FF; text-align: center;" disabled/>
-            <br/>
-    </div>
-    <div class="form-group">
-        <label><h4>Review:</h4></label>
-        <br>
+                <input type="range" min="1" max="10" step="1" value="1" id="rating" name="rating" style="width:500px" onchange='document.getElementById("r").value = document.getElementById("rating").value;'/>
+                <input type="text" name="r" id="r" value="1" size="1" style="border:3px solid #FB6107; width:35px; font-size: 20px; background-color: #1BE7FF; text-align: center;" disabled/>
+                <br/>
+        </div>
+        <div class="form-group">
+            <label><h4>Review:</h4></label>
+            <br>
 
-        <textarea class="form-control" name="review" rows="10" cols="20"></textarea><br>
+            <textarea class="form-control" name="review" rows="10" cols="20"></textarea><br>
+        </div>
+        <input type="submit" class="btn btn-primary" name="submit">
     </div>
-    <input type="submit" class="btn btn-primary" name="submit">
 </form>
 
 <hr />

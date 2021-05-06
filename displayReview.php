@@ -23,12 +23,15 @@ include 'dbh.php';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
+
 <?php
 $mid = $_GET[mid];
 $uid = $_GET[uid];
 
-echo "Hello, ".$uid. "<br>";
+echo "Hello, "."<i>".$uid."</i><br>";
 echo "<hr />";
+echo '<div class="container">';
 
 function displayMovieName() {
     global $mid;
@@ -60,14 +63,15 @@ function displayMovieInfo(){
         $targetMovie .=     '<div class="col-4">';
         $targetMovie .=     '<img class="mov-pic" src="'.$movieInfo[7].'"  width="200" height="250">';
         $targetMovie .=     '</div>';
-        
-        $targetMovie .=     '<div class="col-8">';
-        $targetMovie .=         '<p><i>'.$movieInfo[0].'</i></p>';
-        $targetMovie .=         '<p><i>'.$movieInfo[1].'</i></p>';
-        $targetMovie .=         '<p><i>'.$movieInfo[3].'</i></p>';
-        $targetMovie .=         '<p><i>'.$movieInfo[4].'</i></p>';
-        $targetMovie .=         '<p><i>'.$movieInfo[5].'</i></p>';
-        $targetMovie .=         '<p><i>'.$movieInfo[6].'</i></p>';
+        $targetMovie .=     '<div class="col-2">';
+        $targetMovie .=     '</div>';
+        $targetMovie .=     '<div class="col-6">';
+        $targetMovie .=         '<p>Title:&nbsp<i><b>'.$movieInfo[0].'</b></i></p>';
+        $targetMovie .=         '<p>Year:&nbsp<i><b>'.$movieInfo[1].'</b></i></p>';
+        $targetMovie .=         '<p>Length:&nbsp<i><b>'.$movieInfo[3].'</b></i></p>';
+        $targetMovie .=         '<p>Category:&nbsp<i><b>'.$movieInfo[4].'</b></i></p>';
+        $targetMovie .=         '<p>Country:&nbsp<i><b>'.$movieInfo[5].'</b></i></p>';
+        $targetMovie .=         '<p>Rating:&nbsp<i><b>'.$movieInfo[6].'</b></i></p>';
 
         $targetMovie .=     '</div>';
 
@@ -95,6 +99,6 @@ echo $add;
 
 ?>
 
-
+</div>
 </body>
 </html>

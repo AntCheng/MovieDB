@@ -60,7 +60,7 @@ FROM (SELECT m.MovieID, max(rating)
 }
 
 function Display($sql){  
-    $targetMovie = "<h2>Search result</h2>";
+    $targetMovie = "<br><h2>Search result</h2>";
     $result = executePlainSQL($sql);
     $empty = 0;
     while(($row = oci_fetch_row($result)) != false){
@@ -75,17 +75,18 @@ function Display($sql){
         $targetMovie .=     '<div class="col-4">';
         $targetMovie .=     '<img class="mov-pic" src="'.$movieInfo[7].'"  width="200" height="250">';
         $targetMovie .=     '</div>';
-        
-        $targetMovie .=     '<div class="col-8">';
-        $targetMovie .=         '<p><i>'.$movieInfo[0].'</i></p>';
-        $targetMovie .=         '<p><i>'.$movieInfo[1].'</i></p>';
-        $targetMovie .=         '<p><i>'.$movieInfo[3].'</i></p>';
-        $targetMovie .=         '<p><i>'.$movieInfo[4].'</i></p>';
-        $targetMovie .=         '<p><i>'.$movieInfo[5].'</i></p>';
-        $targetMovie .=         '<p><i>'.$movieInfo[6].'</i></p>';
+        $targetMovie .=     '<div class="col-2">';
+        $targetMovie .=     '</div>';
+        $targetMovie .=     '<div class="col-6">';
+        $targetMovie .=         '<p>Title:&nbsp<i><b>'.$movieInfo[0].'</b></i></p>';
+        $targetMovie .=         '<p>Year:&nbsp<i><b>'.$movieInfo[1].'</b></i></p>';
+        $targetMovie .=         '<p>Length:&nbsp<i><b>'.$movieInfo[3].'</b></i></p>';
+        $targetMovie .=         '<p>Category:&nbsp<i><b>'.$movieInfo[4].'</b></i></p>';
+        $targetMovie .=         '<p>Country:&nbsp<i><b>'.$movieInfo[5].'</b></i></p>';
+        $targetMovie .=         '<p>Rating:&nbsp<i><b>'.$movieInfo[6].'</b></i></p>';
 
         $targetMovie .=         '<form method="POST" action='.$url.'>';
-        $targetMovie .=         '<input type="submit" value="moreInfo" name="moreInfo"></p>';
+        $targetMovie .=         '<input type="submit" value="More Info" name="moreInfo"></p>';
         $targetMovie .=         '</form>';
         $targetMovie .=     '</div>';
 
@@ -128,9 +129,9 @@ function queryWelcomeCat(){
     FROM MovieBasicInfo
     GROUP BY Categories
     HAVING avg(rating) > (SELECT avg(rating) FROM MovieBasicInfo)";
-    echo "<h3><i> The welcome categories are: </i></h3>";
+    echo "<h5> The popular categories are: </h5>";
     $result = executePlainSQL($sql);
     while(($row = oci_fetch_row($result)) != false){
-        echo "<h3><i> $row[0]   &nbsp;&nbsp;<h3><i>";
+        echo "<h5><i> $row[0]   &nbsp;&nbsp;<h5><i>";
     }
 }
