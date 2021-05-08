@@ -78,16 +78,16 @@ function handleMapRequest() {
             $accountNumber = $row[0];
         }
         // get number of reviews
-        $number = 0;
-        $raw_number = executePlainSQL("SELECT COUNT(*) FROM RReview");
-        while (($row = oci_fetch_row($raw_number)) != false) {
-            $number = $row[0];
+        $maxID = 0;
+        $raw_maxID = executePlainSQL("SELECT MAX(ReviewID) FROM RReview");
+        while (($row = oci_fetch_row($raw_maxID)) != false) {
+            $maxID = $row[0];
         }
-        $number = 2 * $number + 1;   // set review id to be 2 * #of current reviews + 1
+        $maxID = $maxID + 1;   // set review id to be the max current review ID + 1
 
         $date = date('j-M-Y');
         executePlainSQL("INSERT INTO RReview
-                            VALUES (0, 0, '$Review', '$date', $Rating, '$number', '$mid', '$accountNumber')");
+                            VALUES (0, 0, '$Review', '$date', $Rating, '$maxID', '$mid', '$accountNumber')");
     }
 
     echo "<br>Review Saved!<br>";

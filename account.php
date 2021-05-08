@@ -27,9 +27,9 @@ echo "<hr />";
   <body>
       <div class="container">
         <h3><i>Update your password</i></h3>
-        <form action="#" method="post">
+        <form action="#bottom" method="post">
             <label for="password">New password:</label><br>
-            <textarea name="new" rows="1" cols="20" maxlength="20"></textarea>
+            <textarea name="new" rows="1" cols="23" maxlength="20"></textarea>
             <br><br>
             <input type="submit" value = "Submit" name="newPassword"></p>
         </form>
@@ -52,7 +52,7 @@ function getAccountNumber() {
 // helper: delete button for each review
 function deleteRow($rid) {
     $uid = $_GET['uid'];
-    $url_delete = "account.php?uid=".urlencode($uid)."&rid=".urlencode($rid);
+    $url_delete = "account.php?uid=".urlencode($uid)."&rid=".urlencode($rid)."#bottom";
     $delete_button = '<td><form method="POST" action='.$url_delete.'>';
     $delete_button .= '<object height="1" hspace="30"></object>';
     $delete_button .= '<input type="submit" value="delete" name="delete"></form></td>';
@@ -81,6 +81,7 @@ function showReviewTable($r) {
 
 // helper: back to main page
 function backToMain() {
+    echo '<div id="bottom"></div>';
     $url_back = "main.php?uid=".urlencode($_GET[uid]);
     $back = '<form method="POST" action='.$url_back.'>';
     $back .= '<input type="submit" value="back" name="back to main"></p></form>';
@@ -130,7 +131,6 @@ function handleDeleteReviewRequest() {
                              WHERE REVIEWID = '$rid' AND AccountNumber = '$accountNumber'");
     if (!($result = false)) {
         echo "review deleted!";
-        backToMain();
     } else {
         echo "error";
     }
@@ -150,7 +150,6 @@ function handleUpdatePasswordRequest() {
         executePlainSQL("UPDATE Users SET Passwords = '$new_password'
                      WHERE AccountNumber = '$accountNumber'");
         echo "Update successful!";
-        backToMain();
 
     }
     OCICommit($db_conn);
@@ -180,6 +179,7 @@ function handleGETRequest() {
 
 displayReviewSingleUser();
 displayCommentSingleUser();
+backToMain();
 
 if (isset($_POST['newPassword']) || isset($_POST['delete'])){
     handlePOSTRequest();
