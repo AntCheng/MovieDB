@@ -4,20 +4,12 @@ include 'dbh.php';
 
 <html>
 
-<style>
-    body {
-        background-image: url('img/background2.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-</style>
-
 <head>
     <title>Review Page</title>
 </head>
 
-<body>
+<body class="displayReview">
+<link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -78,9 +70,9 @@ function displayMovieInfo(){
         $targetMovie .= '</div>';
         $targetMovie .= '<hr>';
 
-        echo '<div class="container">';
+        //echo '<div class="container">';
         echo $targetMovie;
-        echo '</div>';
+        //echo '</div>';
 
 }
 

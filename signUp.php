@@ -5,22 +5,17 @@ include 'dbh.php';
 <html>
 
 <head>
-    <style>
-        .gap-50 {
-            width:100%;
-            height:50px;
-        }
-    </style>
     <title>Movie Info</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body class="signup">
 
 <div class="container-fluid">
     <img src="./img/abstractPic.jpg" class="img-fluid" alt="the background">
@@ -39,19 +34,11 @@ include 'dbh.php';
                 <br /><br />
                 <input type="submit" name="signup" value="Sign Up"></form>
         </div>
-
     </div>
-
 </body>
-
-
-
 </html>
 
-
-
 <?php
-
 
 function handleDifference($p, $c) {
     if ($p != $c) {

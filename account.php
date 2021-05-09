@@ -6,25 +6,18 @@ echo "Hello, "."<i>".$uid."</i><br>";
 echo "<hr />";
 
 ?>
-<style>
-    body {
-        background-image: url('img/background.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-</style>
 
 <html>
   <head>
     <title> User center </title>
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
 
-  <body>
+  <body class="account">
       <div class="container">
         <h3><i>Update your password</i></h3>
         <form action="#bottom" method="post">
@@ -130,7 +123,7 @@ function handleDeleteReviewRequest() {
                              FROM RREVIEW
                              WHERE REVIEWID = '$rid' AND AccountNumber = '$accountNumber'");
     if (!($result = false)) {
-        echo "review deleted!";
+        echo "<b>review deleted!</b>";
     } else {
         echo "error";
     }
@@ -149,7 +142,7 @@ function handleUpdatePasswordRequest() {
         $accountNumber = getAccountNumber();
         executePlainSQL("UPDATE Users SET Passwords = '$new_password'
                      WHERE AccountNumber = '$accountNumber'");
-        echo "Update successful!";
+        echo "<b>Update successful!</b>";
 
     }
     OCICommit($db_conn);

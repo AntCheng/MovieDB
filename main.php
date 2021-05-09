@@ -4,20 +4,13 @@ include 'queryDisplay.php';
 
 displayHeader();
 ?>
-<style>
-    body {
-        background-image: url('img/background3.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-</style>
 
 <html>
 <head>
     <title>Movie Info</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -25,7 +18,7 @@ displayHeader();
 
 </head>
 
-<body> 
+<body class="main">
 
 <div class="container-fluid">
 
@@ -38,11 +31,11 @@ displayHeader();
         </p>
 
         <div class="collapse" id="movies">
-            <div class="overflow-auto", style="height: 500px">
+            <div class="overflow-auto">
                 <div class="card card-body">
                     <h4><?php $result = executePlainSQL("SELECT Count(*) FROM MOVIEBASICINFO");
                         if (($row = oci_fetch_row($result)) != false)
-                            echo "<br> All " . $row[0] . " movies:<br>";
+                            echo "<br> All " . $row[0] . " movies in the database: </br>";
                         echo '<hr>';
                         $result = executePlainSQL("SELECT * FROM MOVIEBASICINFO");
                         $col = 7;
@@ -72,7 +65,7 @@ displayHeader();
             </div>
             <div class="col-10">
                 <br>
-                <form class="form-horizontal" method="POST" action="#">
+                <form class="form-horizontal" method="POST" action="#result">
                     <input type="hidden" id="searchRequest" name="searchRequest">
                     <div class="form_input">
                         <select id="filter_category" class="form-control" name="filter_category">
@@ -144,21 +137,21 @@ displayHeader();
 <!--                <div class="row">-->
 <!--                    <div class="col-xs-12">-->
                         <h4>Find the best rating movie in each category</h4>
-                        <form method="POST" action="#"> <!--refresh page when submitted-->
+                        <form method="POST" action="#result"> <!--refresh page when submitted-->
                             <input type="hidden" id="catRequest" name="catRequest">
-                            <input type="submit" value = "display" name="category_best"></p>
+                            <input type="submit" value = "display" name="category_best" class="s"></p>
                         </form>
 
                         <h4>Find the movies that have been reviewed by all users</h4>
-                        <form method="POST" action="#"> <!--refresh page when submitted-->
+                        <form method="POST" action="#result"> <!--refresh page when submitted-->
                             <input type="hidden" id="allReviewRequest" name="allReviewRequest">
-                            <input type="submit" value = "display" name="allReview"></p>
+                            <input type="submit" value = "display" name="allReview" class="s"></p>
                         </form>
 
                         <h4>Find popular categories</h4>
-                        <form method="POST" action="#"> <!--refresh page when submitted-->
+                        <form method="POST" action="#result"> <!--refresh page when submitted-->
                             <input type="hidden" id="wellCatRequest" name="wellCatRequest">
-                            <input type="submit" value = "display" name="wellCat"></p>
+                            <input type="submit" value = "display" name="wellCat" class="s"></p>
                         </form>
 <!--                    </div>-->
 <!--                </div>-->
@@ -225,7 +218,7 @@ function displayHeader() {
     $userCenter = '<form method="POST" action='.$url_user.'>';
     $userCenter .= '<object height="1" hspace="350"></object>';
     $userCenter .= "Update your password or reviews".'&nbsp&nbsp';
-    $userCenter .=  '<input type="submit" value="Go" name="go">';
+    $userCenter .=  '<input type="submit" value="Go" name="go" class="s">';
     $userCenter .=  '</form>';
     echo $userCenter.'<hr /></div></span>';
 }

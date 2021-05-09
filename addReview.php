@@ -10,35 +10,29 @@ $url = "main.php?uid=".urlencode($uid);
 
 
 <html>
-<style>
-    body {
-        background-image: url('img/background3.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-</style>
+
 <head>
     <title> Review and Rate </title>
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body class="addReview">
 <form method="post" action=>
     <div class="container">
         <div class="form-group">
-            <label><h4>Rating: from 1 to 10</h4></label>
+            <label><h4>Add a rating <i>(from 1 to 10)</i> </h4></label>
             <form method="POST">
 
                 <input type="range" min="1" max="10" step="1" value="1" id="rating" name="rating" style="width:500px" onchange='document.getElementById("r").value = document.getElementById("rating").value;'/>
-                <input type="text" name="r" id="r" value="1" size="1" style="border:3px solid #FB6107; width:35px; font-size: 20px; background-color: #1BE7FF; text-align: center;" disabled/>
+                <input type="text" name="r" id="r" value="1" size="1" style="border:3px solid #2c07fb; width:35px; font-size: 20px; background-color: #d6ede9; text-align: center; border-radius: 100%;" disabled/>
                 <br/>
         </div>
         <div class="form-group">
-            <label><h4>Review:</h4></label>
+            <label><h4>Your review:</h4></label>
             <br>
 
             <textarea class="form-control" name="review" rows="10" cols="20"></textarea><br>
@@ -133,7 +127,7 @@ if (isset($_POST['submit']) || isset($_POST['return'])) {
 
 <form method="post" action=<?= $url ?>>
     <input type="hidden" id="backRequest" name="backRequest">
-    <input type="submit" value = "Back" name="return"></p>
+    <input type="submit" value = "Back" name="return" class="s"></p>
 </form>
 
 </body>

@@ -60,7 +60,7 @@ FROM (SELECT m.MovieID, max(rating)
 }
 
 function Display($sql){  
-    $targetMovie = "<br><h2>Search result</h2>";
+    $targetMovie = '<div id="result"></div>'."<br><h2>Search result</h2>";
     $result = executePlainSQL($sql);
     $empty = 0;
     while(($row = oci_fetch_row($result)) != false){
@@ -97,9 +97,10 @@ function Display($sql){
     if($empty ==0){
         echo "<h4><i>Unfortunately, No such movies in the database</i></h4>";
     }
+    echo '<div class="overflow-auto">';
     echo '<div class="container">';
     echo $targetMovie;
-    echo '</div>';
+    echo '</div></div>';
 }
 
 function queryCatRequest(){
