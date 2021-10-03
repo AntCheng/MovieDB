@@ -50,7 +50,6 @@ function handleDifference($p, $c) {
 
 function handleSignUpRequest() {
     global $db_conn;
-    var_dump($db_conn);
     $n = $_POST['Names'];
     $p = $_POST['Passwords'];
     $c = $_POST['Confirmation'];
