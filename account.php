@@ -36,7 +36,7 @@ function getAccountNumber() {
     global $accountNumber;
     $uid = $_GET['uid'];
     $raw_accountNumber = executePlainSQL("SELECT AccountNumber FROM Users WHERE Names = '$uid'");
-    if (($row = oci_fetch_row($raw_accountNumber)) != false) {
+    if (($row = mysqli_fetch_row($raw_accountNumber)) != false) {
         $accountNumber = $row[0];
     }
     return $accountNumber;
@@ -127,7 +127,7 @@ function handleDeleteReviewRequest() {
     } else {
         echo "error";
     }
-    OCICommit($db_conn);
+    // OCICommit($db_conn);
 }
 
 
@@ -145,7 +145,7 @@ function handleUpdatePasswordRequest() {
         echo "<b>Update successful!</b>";
 
     }
-    OCICommit($db_conn);
+    // OCICommit($db_conn);
 
 }
 
