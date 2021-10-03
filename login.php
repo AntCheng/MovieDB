@@ -62,16 +62,18 @@ function handleLoginRequest() {
         echo "<br>Username or password cannot be empty. Auto-refresh in 1 second.<br>";
         exit;
     }
+
     $q = executePlainSQL("SELECT Count(*) FROM Users WHERE (Users.names='$n' and Users.passwords='$p')");
-    $result = oci_fetch_row($q);
+    $result = mysqli_fetch_row($q);
+
     if ($result[0]==1) {
         echo "<br>Logged In Successfully!<br>";
         header('refresh:0.5; url=main.php?uid='.$n);
     } else if ($result[0] == 0) {
-        header('refresh:1; url=login.php');
+        header('refresh:5; url=login.php');
         echo "<br>Username or password wrong. Auto-refresh in 1 seconds.<br>";
     }
-    OCICommit($db_conn);
+    $db_conn->commit();
 }
 
 
