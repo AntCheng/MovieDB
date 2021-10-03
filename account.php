@@ -120,7 +120,7 @@ echo "<hr />";
         //echo "rid: ".$rid;
         $accountNumber = getAccountNumber();
         $result = executePlainSQL("DELETE
-                             FROM RREVIEW
+                             FROM RReview
                              WHERE REVIEWID = '$rid' AND AccountNumber = '$accountNumber'");
         if (!($result = false)) {
             echo "<b>review deleted!</b>";

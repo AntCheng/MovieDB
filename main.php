@@ -35,13 +35,13 @@ displayHeader();
                 <div class="card card-body">
                     <h4>
                         <?php
-                        $result = executePlainSQL("SELECT Count(*) FROM MOVIEBASICINFO");
+                        $result = executePlainSQL("SELECT Count(*) FROM MovieBasicInfo");
                         $row = mysqli_fetch_row($result);
 
                         if ($row != null)
                             echo "<br> All " . $row[0] . " movies in the database: </br>";
                         echo '<hr>';
-                        $result = executePlainSQL("SELECT * FROM MOVIEBASICINFO");
+                        $result = executePlainSQL("SELECT * FROM MovieBasicInfo");
                         $col = 7;
                         showTable($result, $col, true);
                         ?>

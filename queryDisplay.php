@@ -124,7 +124,7 @@ function queryAllReview(){
         (SELECT u.AccountNumber
          FROM Users u
          WHERE u.AccountNumber NOT IN (SELECT r.AccountNumber
-                                       FROM RREVIEW r
+                                       FROM RReview r
                                        WHERE r.MovieID = m.MovieID))";
     Display($sql);
 }
