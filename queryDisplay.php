@@ -63,11 +63,11 @@ function Display($sql){
     $targetMovie = '<div id="result"></div>'."<br><h2>Search result</h2>";
     $result = executePlainSQL($sql);
     $empty = 0;
-    while(($row = oci_fetch_row($result)) != false){
+    while(($row = mysqli_fetch_row($result)) != false){
         // echo $row[0];
         $empty = 1;
         $movieInfo = executePlainSQL('SELECT * FROM MovieBasicInfo m WHERE m.MovieID ='.$row[0]);
-        $movieInfo = oci_fetch_row($movieInfo);
+        $movieInfo = mysqli_fetch_row($movieInfo);
         // echo $movieInfo[0];
         //echo $movieInfo['TITLE'];
         $url = "displayReview.php?mid=".urlencode($movieInfo[2])."&uid=".urlencode($_GET[uid]);

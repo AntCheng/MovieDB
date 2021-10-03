@@ -5,6 +5,12 @@ $success = True; //keep track of errors so it redirects the page only if there a
 $db_conn = NULL; // edit the login credentials in connectToDB()
 $show_debug_alert_messages = False; // set to True if you want alerts to show you which methods are being triggered (see how it is used in debugAlertMessage())
 
+function mysqli_field_name($result, $field_offset)
+{
+    $properties = mysqli_fetch_field_direct($result, $field_offset);
+    return is_object($properties) ? $properties->name : False;
+}
+
 function debugAlertMessage($message) {
     global $show_debug_alert_messages;
 
@@ -26,18 +32,6 @@ function executeBoundSQL($cmdstr, $list, $types) { // takes a list of inputs and
     $stmt->bind_param($types, $list[0], $list[1]);
     $result = $stmt->execute();
     return $result;
-}
-
-function printResult($result) { //prints results from a select statement
-    echo "<br>Retrieved data from table demoTable:<br>";
-    echo "<table>";
-    echo "<tr><th>ID</th><th>Name</th></tr>";
-
-    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        echo "<tr><td>" . $row["ID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]"
-    }
-
-    echo "</table>";
 }
 
 function connectToDB() {
@@ -68,7 +62,7 @@ function showTable($r, $c, $pic) {
     echo "<table style='width:100%' class='table table-striped'>";
     echo "<thead class='thead-dark'><tr>";
     for ($i = 1; $i <= $c; $i++){
-        $field_name = ucwords(strtolower(oci_field_name($r, $i)));
+        $field_name = ucwords(strtolower(mysqli_field_name($r, $i)));
         echo "<th>$field_name</th>";
     }
     if ($pic) {
@@ -76,7 +70,7 @@ function showTable($r, $c, $pic) {
     }
     echo "</tr></thead>";
     echo "<tbody><tr>";
-    while($row = oci_fetch_row($r)){
+    while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)){
         for($i = 0; $i < $c; $i++){
             echo "<td>$row[$i]</td>";
         }

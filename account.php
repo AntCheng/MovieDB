@@ -57,12 +57,12 @@ function showReviewTable($r) {
     echo "<table style='width:100%' class='table table-stripe'>";
     echo "<thead class='thead-dark'><tr>";
     for ($i = 1; $i <= 4; $i++){
-        $field_name = ucwords(strtolower(oci_field_name($r, $i)));
+        $field_name = ucwords(strtolower(mysqli_field_name($r, $i)));
         echo "<th>$field_name</th>";
     }
     echo "</tr></thead>";
     echo "<tbody><tr>";
-    while($row = oci_fetch_row($r)){
+    while($row = mysqli_fetch_row($r)){
         for($i = 0; $i < 4; $i++){
             echo "<td>$row[$i]</td>";
         }
@@ -94,7 +94,7 @@ function displayReviewSingleUser() {
     echo '<hr />';
     showReviewTable($result);
     echo '<hr />';
-    OCICommit($db_conn);
+    // OCICommit($db_conn);
 }
 
 //get all comments associated with the user's reviews
