@@ -187,19 +187,4 @@ echo "<hr />";
 </html>
 
 
-displayReviewSingleUser();
-displayCommentSingleUser();
-backToMain();
-
-if (isset($_POST['newPassword']) || isset($_POST['delete'])){
-    handlePOSTRequest();
-} else if (0) {
-    handleGETRequest();
-}
-
-?>
-      </div>
-  </body>
-
-</html>
 

@@ -23,36 +23,28 @@ function generalQueryAndDisplay(){
     if($rating!=""){
         $sql .= "AND m.rating = '" .$_POST['filter_rating']. "'";
     }
-    /*
-    SELECT mm.MovieID
-FROM (SELECT m.MovieID, max(rating)
-      FROM MovieBasicInfo m --sql , moviebsaicinfo m
-      GROUP BY Categories) as mm;
-    */
-    //Try to find the max rating movie given some movieID
-//    if(isset($_POST['filter_topRating'])){
-//        $sql =
-//        "SELECT mb.MovieID
-//        FROM ($sql) nm, MovieBasicInfo mb
-//        WHERE nm.MovieID = mb.MovieID AND NOT EXISTS (SELECT * FROM ($sql) nm2, MovieBasicInfo mb2 WHERE nm2.MovieID = mb2.MovieID AND mb2.rating > mb.rating)";
-//    }
+
+    // Try to find the max rating movie given some movieID
+    if(isset($_POST['filter_topRating'])){
+        $sql =
+        "SELECT mb.MovieID
+        FROM ($sql) nm, MovieBasicInfo mb
+        WHERE nm.MovieID = mb.MovieID AND NOT EXISTS (SELECT * FROM ($sql) nm2, MovieBasicInfo mb2 WHERE nm2.MovieID = mb2.MovieID AND mb2.rating > mb.rating)";
+    }
 
     //Find the most reviewed movies
     if(isset($_POST['filter_mostreviewd'])){
         $sql =
             "WITH sd AS (
-                        SELECT m.MOVIEID, Count(*) as nreview
-                        FROM ($sql) m, RREVIEW r
+                        SELECT m.MovieID, Count(*) as nreview
+                        FROM ($sql) m, RReview r
                         WHERE m.MovieID = r.MovieID
-                        GROUP BY m.MOVIEID)
+                        GROUP BY m.MovieID)
             SELECT sd.MovieID
             FROM  sd
             WHERE sd.nreview = (SELECT max(sd.nreview)
                                 FROM sd)";
-
     }
-
-    //echo "check 2";
     Display($sql);
 }
 
@@ -60,18 +52,13 @@ function Display($sql){
 
     $targetMovie = '<div id="result"></div>'."<br><h2>Search result</h2>";
     $result = executePlainSQL($sql);
-    var_dump($result);
     $empty = 0;
-    // echo "0";
     while(($row = mysqli_fetch_row($result)) != null){
-        // echo "row:";
-        // var_dump($row);
+
         $empty = 1;
         $movieInfo = executePlainSQL('SELECT * FROM MovieBasicInfo m WHERE m.MovieID ='.$row[0]);
         $movieInfo = mysqli_fetch_row($movieInfo);
-        // echo "movieInfo";
-        // var_dump($movieInfo);
-        //echo $movieInfo['TITLE'];
+
         $url = "displayReview.php?mid=".urlencode($movieInfo[2])."&uid=".urlencode($_GET[uid]);
         $targetMovie .= '<div class="row">';
         $targetMovie .=     '<div class="col-4">';
