@@ -1,18 +1,16 @@
 <?php
-//include 'dbh.php';
+
 
 
 function generalQueryAndDisplay(){
-    
-    $sql = "SELECT m.MovieID FROM MovieBasicInfo m WHERE m.Years>0";
-    $isAND = "check 1";
-    //echo $isAND;
+
+    $sql = "SELECT m.MovieID FROM MovieBasicInfo m WHERE m.Years>0 ";
 
     $category = (isset($_POST['filter_category'])) ? $_POST['filter_category'] : "";
-	$country = (isset($_POST['filter_country'])) ? $_POST['filter_country'] : "";
-	$year = (isset($_POST['filter_year'])) ? $_POST['filter_year'] : "";
+    $country = (isset($_POST['filter_country'])) ? $_POST['filter_country'] : "";
+    $year = (isset($_POST['filter_year'])) ? $_POST['filter_year'] : "";
     $rating = (isset($_POST['filter_rating'])) ? $_POST['filter_rating'] : "";
-    
+
     if($category!=""){
         $sql .= "AND m.Categories = '" .$_POST['filter_category']. "'";
     }
@@ -25,7 +23,6 @@ function generalQueryAndDisplay(){
     if($rating!=""){
         $sql .= "AND m.rating = '" .$_POST['filter_rating']. "'";
     }
-
     /*
     SELECT mm.MovieID
 FROM (SELECT m.MovieID, max(rating)
@@ -33,12 +30,12 @@ FROM (SELECT m.MovieID, max(rating)
       GROUP BY Categories) as mm;
     */
     //Try to find the max rating movie given some movieID
-    if(isset($_POST['filter_topRating'])){
-        $sql =  
-        "SELECT mb.MovieID
-        FROM ($sql) nm, MovieBasicInfo mb
-        WHERE nm.MovieID = mb.MovieID AND NOT EXISTS (SELECT * FROM ($sql) nm2, MovieBasicInfo mb2 WHERE nm2.MovieID = mb2.MovieID AND mb2.rating > mb.rating)";
-    }
+//    if(isset($_POST['filter_topRating'])){
+//        $sql =
+//        "SELECT mb.MovieID
+//        FROM ($sql) nm, MovieBasicInfo mb
+//        WHERE nm.MovieID = mb.MovieID AND NOT EXISTS (SELECT * FROM ($sql) nm2, MovieBasicInfo mb2 WHERE nm2.MovieID = mb2.MovieID AND mb2.rating > mb.rating)";
+//    }
 
     //Find the most reviewed movies
     if(isset($_POST['filter_mostreviewd'])){
@@ -59,16 +56,21 @@ FROM (SELECT m.MovieID, max(rating)
     Display($sql);
 }
 
-function Display($sql){  
+function Display($sql){
+
     $targetMovie = '<div id="result"></div>'."<br><h2>Search result</h2>";
     $result = executePlainSQL($sql);
+    var_dump($result);
     $empty = 0;
-    while(($row = mysqli_fetch_row($result)) != false){
-        // echo $row[0];
+    // echo "0";
+    while(($row = mysqli_fetch_row($result)) != null){
+        // echo "row:";
+        // var_dump($row);
         $empty = 1;
         $movieInfo = executePlainSQL('SELECT * FROM MovieBasicInfo m WHERE m.MovieID ='.$row[0]);
         $movieInfo = mysqli_fetch_row($movieInfo);
-        // echo $movieInfo[0];
+        // echo "movieInfo";
+        // var_dump($movieInfo);
         //echo $movieInfo['TITLE'];
         $url = "displayReview.php?mid=".urlencode($movieInfo[2])."&uid=".urlencode($_GET[uid]);
         $targetMovie .= '<div class="row">';
@@ -104,7 +106,8 @@ function Display($sql){
 }
 
 function queryCatRequest(){
-    $sql =" WITH mm AS (SELECT m.Categories, max(rating) as rati
+    $sql =
+        "WITH mm AS (SELECT m.Categories, max(rating) as rati
                         FROM MovieBasicInfo m 
                         GROUP BY m.Categories)
     SELECT m.MovieID
@@ -114,14 +117,15 @@ function queryCatRequest(){
 }
 
 function queryAllReview(){
-    $sql ="SELECT m.movieID
+    $sql =
+        "SELECT m.movieID
     FROM MovieBasicInfo m
-    WHERE NOT EXISTS((SELECT u.AccountNumber
-                      FROM Users u)
-                     MINUS
-                     (SELECT r.AccountNumber
-                      FROM RREVIEW r
-                      WHERE r.MovieID = m.movieID))";
+    WHERE NOT EXISTS 
+        (SELECT u.AccountNumber
+         FROM Users u
+         WHERE u.AccountNumber NOT IN (SELECT r.AccountNumber
+                                       FROM RREVIEW r
+                                       WHERE r.MovieID = m.MovieID))";
     Display($sql);
 }
 
@@ -132,7 +136,7 @@ function queryWelcomeCat(){
     HAVING avg(rating) > (SELECT avg(rating) FROM MovieBasicInfo)";
     echo "<h5> The popular categories are: </h5>";
     $result = executePlainSQL($sql);
-    while(($row = oci_fetch_row($result)) != false){
+    while(($row = mysqli_fetch_row($result)) != false){
         echo "<h5><i> $row[0]   &nbsp;&nbsp;<h5><i>";
     }
 }

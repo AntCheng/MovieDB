@@ -29,7 +29,7 @@ function displayMovieName() {
     global $mid;
     // get movie name
     $movieName_raw = executePlainSQL("SELECT Title FROM MovieBasicInfo WHERE MovieID = '$mid'");
-    if (($row = oci_fetch_row($movieName_raw)) != false) {
+    if (($row = mysqli_fetch_row($movieName_raw)) != null) {
         $movieName = $row[0];
     }
     echo "<h4>"."Check out previous reviews of " . "<i>" . $movieName . "</i>" . "</h4>"."<br>";
@@ -46,39 +46,42 @@ function displayReviewSingleMovie() {
 
 function displayMovieInfo(){
     global $mid;
-        $movieInfo = executePlainSQL('SELECT * FROM MovieBasicInfo m WHERE m.MovieID ='.$mid);
-        $movieInfo = oci_fetch_row($movieInfo);
-        // echo $movieInfo[0];
-        //echo $movieInfo['TITLE'];
-        $url = "displayReview.php?mid=".urlencode($movieInfo[2])."&uid=".urlencode($_GET[uid]);
-        $targetMovie = '<div class="row">';
-        $targetMovie .=     '<div class="col-4">';
-        $targetMovie .=     '<img class="mov-pic" src="'.$movieInfo[7].'"  width="200" height="250">';
-        $targetMovie .=     '</div>';
-        $targetMovie .=     '<div class="col-2">';
-        $targetMovie .=     '</div>';
-        $targetMovie .=     '<div class="col-6">';
-        $targetMovie .=         '<p>Title:&nbsp<i><b>'.$movieInfo[0].'</b></i></p>';
-        $targetMovie .=         '<p>Year:&nbsp<i><b>'.$movieInfo[1].'</b></i></p>';
-        $targetMovie .=         '<p>Length:&nbsp<i><b>'.$movieInfo[3].'</b></i></p>';
-        $targetMovie .=         '<p>Category:&nbsp<i><b>'.$movieInfo[4].'</b></i></p>';
-        $targetMovie .=         '<p>Country:&nbsp<i><b>'.$movieInfo[5].'</b></i></p>';
-        $targetMovie .=         '<p>Rating:&nbsp<i><b>'.$movieInfo[6].'</b></i></p>';
 
-        $targetMovie .=     '</div>';
+    $movieInfo = executePlainSQL('SELECT * FROM MovieBasicInfo m WHERE m.MovieID ='.$mid);
+    $movieInfo = mysqli_fetch_row($movieInfo);
 
-        $targetMovie .= '</div>';
-        $targetMovie .= '<hr>';
+    $url = "displayReview.php?mid=".urlencode($movieInfo[2])."&uid=".urlencode($_GET[uid]);
+    $targetMovie = '<div class="row">';
+    $targetMovie .=     '<div class="col-4">';
+    $targetMovie .=     '<img class="mov-pic" src="'.$movieInfo[7].'"  width="200" height="250">';
+    $targetMovie .=     '</div>';
+    $targetMovie .=     '<div class="col-2">';
+    $targetMovie .=     '</div>';
+    $targetMovie .=     '<div class="col-6">';
+    $targetMovie .=         '<p>Title:&nbsp<i><b>'.$movieInfo[0].'</b></i></p>';
+    $targetMovie .=         '<p>Year:&nbsp<i><b>'.$movieInfo[1].'</b></i></p>';
+    $targetMovie .=         '<p>Length:&nbsp<i><b>'.$movieInfo[3].'</b></i></p>';
+    $targetMovie .=         '<p>Category:&nbsp<i><b>'.$movieInfo[4].'</b></i></p>';
+    $targetMovie .=         '<p>Country:&nbsp<i><b>'.$movieInfo[5].'</b></i></p>';
+    $targetMovie .=         '<p>Rating:&nbsp<i><b>'.$movieInfo[6].'</b></i></p>';
 
-        //echo '<div class="container">';
-        echo $targetMovie;
-        //echo '</div>';
+    $targetMovie .=     '</div>';
+
+    $targetMovie .= '</div>';
+    $targetMovie .= '<hr>';
+
+    //echo '<div class="container">';
+    echo $targetMovie;
+    //echo '</div>';
 
 }
 
-displayMovieInfo();
-displayMovieName();
-displayReviewSingleMovie();
+if (connectToDB()) {
+    displayMovieInfo();
+    displayMovieName();
+    displayReviewSingleMovie();
+}
+
 
 // jump to addReview
 $url = "addReview.php?mid=".urlencode($mid)."&uid=".urlencode($uid);

@@ -1,5 +1,5 @@
 <?php
-
+include "dbc.php";
 
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = NULL; // edit the login credentials in connectToDB()
@@ -35,21 +35,18 @@ function executeBoundSQL($cmdstr, $list, $types) { // takes a list of inputs and
 }
 
 function connectToDB() {
-    global $db_conn;
+    global $db_conn, $db_host, $user, $pw, $db_name;
 
-    // Your username is (CWL_ID) and the password is a(student number). For example,
-    // platypus is the username and a12345678 is the password.
+    $db_conn= new mysqli($db_host, $user, $pw, $db_name);
+    if ($db_conn->connect_error) {
+        debugAlertMessage('Connect Failed' . $db_conn->connect_error);
+        return false;
+    } else {
+        debugAlertMessage('Successfully Connected to MYSQL');
+        return true;
+    }
 
-    $db_conn= new mysqli("us-cdbr-east-04.cleardb.com", "b144ad00f588e0", "1e2e241d");
-            if ($db_conn->connect_error) {
-                debugAlertMessage('Connect Failed' . $db_conn->connect_error);
-                return false;
-            } else {
-                debugAlertMessage('Successfully Connected to MYSQL');
-                return true;
-            }
-
-        }
+}
 
 function disconnectFromDB() {
     global $db_conn;
@@ -61,7 +58,8 @@ function disconnectFromDB() {
 function showTable($r, $c, $pic) {
     echo "<table style='width:100%' class='table table-striped'>";
     echo "<thead class='thead-dark'><tr>";
-    for ($i = 1; $i <= $c; $i++){
+
+    for ($i = 0; $i <= $c; $i++){
         $field_name = ucwords(strtolower(mysqli_field_name($r, $i)));
         echo "<th>$field_name</th>";
     }
@@ -70,7 +68,7 @@ function showTable($r, $c, $pic) {
     }
     echo "</tr></thead>";
     echo "<tbody><tr>";
-    while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)){
+    while($row = mysqli_fetch_row($r)){
         for($i = 0; $i < $c; $i++){
             echo "<td>$row[$i]</td>";
         }
