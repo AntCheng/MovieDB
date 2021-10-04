@@ -87,7 +87,7 @@ CREATE TABLE HistoryList
 CREATE TABLE FavouriteList
 (
     ListID       INT,
-    Descriptions CHAR(500),
+    Descriptions CHAR(250),
     PRIMARY KEY (ListID)
 );
 
@@ -106,7 +106,7 @@ CREATE TABLE RReview
 (
     NumberOfLike    INT DEFAULT 0,
     NumberOfDislike INT DEFAULT 0,
-    Content         CHAR(500) NOT NULL,
+    Content         CHAR(250) NOT NULL,
     Dates           DATE,
     Rating          INT,
     ReviewID        INT PRIMARY KEY,
@@ -120,14 +120,14 @@ CREATE TABLE CComment
 (
     NumberOfLike    INT DEFAULT 0,
     NumberOfDislike INT DEFAULT 0,
-    Content         CHAR(500) NOT NULL,
+    Content         CHAR(250) NOT NULL,
     Dates           DATE,
     CommentID       INT PRIMARY KEY,
     ReviewID        INT,
     AccountNumber   INT,
     FOREIGN KEY (AccountNumber) REFERENCES Users (AccountNumber),
     FOREIGN KEY (ReviewID) REFERENCES RReview (ReviewID)
-    ON DELETE CASCADE
+        ON DELETE CASCADE
 );
 
 CREATE TABLE DiscussionGroup
@@ -141,7 +141,7 @@ CREATE TABLE DiscussionContent
     ContentID     INT,
     GroupID       INT,
     AccountNumber INT,
-    Content       CHAR(500) NOT NULL,
+    Content       CHAR(250) NOT NULL,
     Dates         DATE,
     PRIMARY KEY (ContentID, GroupID, AccountNumber),
     FOREIGN KEY (AccountNumber) REFERENCES Users (AccountNumber),
@@ -281,33 +281,33 @@ VALUES (7, 'Bob', 'etfp155');
 
 -- Watch (MovieID, AccountNumber, Dates)
 INSERT INTO Watch
-VALUES (1, 1, '14-Apr-2021');
+VALUES (1, 1, '2021-04-14');
 INSERT INTO Watch
-VALUES (1, 6, '16-Apr-2021');
+VALUES (1, 6, '2021-04-16');
 INSERT INTO Watch
-VALUES (1, 3, '28-Apr-2021');
+VALUES (1, 3, '2021-04-28');
 INSERT INTO Watch
-VALUES (1, 4, '11-May-2021');
+VALUES (1, 4, '2021-05-28');
 INSERT INTO Watch
-VALUES (2, 5, '10-Jun-2021');
+VALUES (2, 5, '2021-06-14');
 INSERT INTO Watch
-VALUES (2, 6, '20-Jun-2021');
+VALUES (2, 6, '2021-06-19');
 INSERT INTO Watch
-VALUES (2, 2, '19-Jul-2021');
+VALUES (2, 2, '2021-06-20');
 INSERT INTO Watch
-VALUES (3, 4, '21-Jul-2021');
+VALUES (3, 4, '2021-06-21');
 INSERT INTO Watch
-VALUES (4, 5, '22-Jul-2021');
+VALUES (4, 5, '2021-07-11');
 INSERT INTO Watch
-VALUES (4, 6, '1-Oct-2021');
+VALUES (4, 6, '2021-10-14');
 INSERT INTO Watch
-VALUES (5, 7, '3-Oct-2021');
+VALUES (5, 7, '2021-09-29');
 INSERT INTO Watch
-VALUES (5, 5, '27-Oct-2021');
+VALUES (5, 5, '2021-10-17');
 INSERT INTO Watch
-VALUES (5, 1, '30-Oct-2021');
+VALUES (5, 1, '2021-10-30');
 INSERT INTO Watch
-VALUES (5, 2, '8-Nov-2021');
+VALUES (5, 2, '2021-11-14');
 
 
 -- HistoryList (ListID)
@@ -340,64 +340,64 @@ VALUES (6666, 'Oscars');
 
 -- RReview (NumberOfLike, NumberOfDislike, Content, Dates, Rating, ReviewID, MovieID, AccountNumber)
 INSERT INTO RReview
-VALUES (0, 0, 'Good  movie!', '1-Jan-2021', 8, 1, 1, 1);
+VALUES (0, 0, 'Good  movie!', '2021-01-14', 8, 1, 1, 1);
 INSERT INTO RReview
-VALUES (0, 0, 'Great!!!', '2-Jan-2021', 9, 2, 1, 5);
+VALUES (0, 0, 'Great!!!', '2021-04-14', 9, 2, 1, 5);
 INSERT INTO RReview
-VALUES (0, 0, 'Bad :( ', '1-Jan-2021', 3, 3, 1, 6);
+VALUES (0, 0, 'Bad :( ', '2021-04-14', 3, 3, 1, 6);
 INSERT INTO RReview
-VALUES (0, 0, 'Just so so', '4-Jan-2021', 7, 4, 4, 2);
+VALUES (0, 0, 'Just so so', '2021-04-14', 7, 4, 4, 2);
 INSERT INTO RReview
-VALUES (0, 0, 'Bad! ...', '6-Jan-2021', 4, 5, 3, 1);
+VALUES (0, 0, 'Bad! ...', '2021-04-18', 4, 5, 3, 1);
 INSERT INTO RReview
-VALUES (0, 0, 'Terrible ...', '6-Jan-2021', 3, 6, 3, 4);
+VALUES (0, 0, 'Terrible ...', '2021-04-18', 3, 6, 3, 4);
 INSERT INTO RReview
-VALUES (0, 0, 'Not a movie ...', '6-Jan-2021', 4, 7, 2, 6);
+VALUES (0, 0, 'Not a movie ...', '2021-04-18', 4, 7, 2, 6);
 INSERT INTO RReview
-VALUES (0, 0, 'Bad 01 ...', '6-Jan-2021', 4, 8, 2, 4);
+VALUES (0, 0, 'Bad 01 ...', '2021-04-18', 4, 8, 2, 4);
 INSERT INTO RReview
-VALUES (0, 0, 'Bad 01 ...', '1-Jan-2021', 4, 9, 5, 2);
+VALUES (0, 0, 'Bad 01 ...', '2021-04-18', 4, 9, 5, 2);
 INSERT INTO RReview
-VALUES (0, 0, 'Good overall', '3-Jan-2021', 7, 10, 3, 3);
+VALUES (0, 0, 'Good overall', '2021-04-18', 7, 10, 3, 3);
 INSERT INTO RReview
-VALUES (0, 0, 'Good casting.', '9-Jan-2021', 8, 11, 6, 2);
+VALUES (0, 0, 'Good casting.', '2021-04-18', 8, 11, 6, 2);
 INSERT INTO RReview
-VALUES (0, 0, 'Not very good.', '2-Jan-2021', 5, 12, 7, 5);
+VALUES (0, 0, 'Not very good.', '2021-04-18', 5, 12, 7, 5);
 INSERT INTO RReview
-VALUES (0, 0, 'Excellent!', '6-Jan-2021', 9, 13, 8, 7);
+VALUES (0, 0, 'Excellent!', '2021-04-18', 9, 13, 8, 7);
 INSERT INTO RReview
-VALUES (0, 0, 'Very good!', '10-Jan-2021', 8, 14, 1, 2);
+VALUES (0, 0, 'Very good!', '2021-04-18', 8, 14, 1, 2);
 INSERT INTO RReview
-VALUES (0, 0, 'Nice!', '13-Jan-2021', 8, 15, 1, 3);
+VALUES (0, 0, 'Nice!', '2021-04-18', 8, 15, 1, 3);
 INSERT INTO RReview
-VALUES (0, 0, 'Wonderful!', '20-Jan-2021', 9, 16, 1, 4);
+VALUES (0, 0, 'Wonderful!', '2021-04-18', 9, 16, 1, 4);
 INSERT INTO RReview
-VALUES (0, 0, 'Good  movie indeed!', '12-Jan-2021', 9, 17, 1, 7);
+VALUES (0, 0, 'Good  movie indeed!', '2021-04-18', 9, 17, 1, 7);
 
 
 -- CComment (NumberOfLike, NumberOfDisLike, Content, Dates, CommentID, ReviewID, AccountNumber)
 INSERT INTO CComment
-VALUES (0, 0, 'Agree 0', '1-Feb-2021', 1000, 3, 1);
+VALUES (0, 0, 'Agree 0', '2021-10-01', 1000, 3, 1);
 INSERT INTO CComment
-VALUES (0, 0, 'Agree 1', '2-Feb-2021', 1001, 2, 2);
+VALUES (0, 0, 'Agree 1', '2021-10-01', 1001, 2, 2);
 INSERT INTO CComment
-VALUES (0, 0, 'Noooooo', '1-Feb-2021', 1002, 1, 2);
+VALUES (0, 0, 'Noooooo', '2021-10-01', 1002, 1, 2);
 INSERT INTO CComment
-VALUES (0, 0, 'Disagree', '9-Jan-2021', 1003, 3, 4);
+VALUES (0, 0, 'Disagree', '2021-10-01', 1003, 3, 4);
 INSERT INTO CComment
-VALUES (0, 0, 'NOPEEEE', '8-Jan-2021', 1004, 4, 5);
+VALUES (0, 0, 'NOPEEEE', '2021-10-01', 1004, 4, 5);
 INSERT INTO CComment
-VALUES (0, 0, 'Interesting review', '8-Jan-2021', 1005, 6, 5);
+VALUES (0, 0, 'Interesting review', '2021-10-01', 1005, 6, 5);
 INSERT INTO CComment
-VALUES (0, 0, 'Interesting review!', '8-Jan-2021', 1006, 5, 7);
+VALUES (0, 0, 'Interesting review!', '2021-10-01', 1006, 5, 7);
 INSERT INTO CComment
-VALUES (0, 0, 'Well said!', '8-Jan-2021', 1007, 8, 3);
+VALUES (0, 0, 'Well said!', '2021-10-01', 1007, 8, 3);
 INSERT INTO CComment
-VALUES (0, 0, 'Well said!', '8-Jan-2021', 1008, 13, 4);
+VALUES (0, 0, 'Well said!', '2021-10-01', 1008, 13, 4);
 INSERT INTO CComment
-VALUES (0, 0, 'Disagree', '9-Jan-2021', 1009, 12, 6);
+VALUES (0, 0, 'Disagree', '2021-10-01', 1009, 12, 6);
 INSERT INTO CComment
-VALUES (0, 0, 'Disagree!!', '9-Jan-2021', 1010, 2, 4);
+VALUES (0, 0, 'Disagree!!', '2021-10-01', 1010, 2, 4);
 
 
 -- DiscussionGroup (GroupID, GroupName)
@@ -415,15 +415,15 @@ VALUES (5, 'Super Group 4');
 
 -- DiscussionContent (ContentID, GroupID, AccountNumber, Content, Dates)
 INSERT INTO DiscussionContent
-VALUES (5000, 1, 1, 'I like this movie', '2-Feb-2021');
+VALUES (5000, 1, 1, 'I like this movie', '2021-10-03');
 INSERT INTO DiscussionContent
-VALUES (5001, 1, 3, 'aaaaaaaa', '2-Feb-2021');
+VALUES (5001, 1, 3, 'aaaaaaaa', '2021-10-03');
 INSERT INTO DiscussionContent
-VALUES (5002, 3, 5, 'hhhhhhhhhhhh', '30-Jan-2021');
+VALUES (5002, 3, 5, 'hhhhhhhhhhhh', '2021-10-03');
 INSERT INTO DiscussionContent
-VALUES (5003, 4, 7, 'GOOD GOOD GOOD', '5-Feb-2021');
+VALUES (5003, 4, 7, 'GOOD GOOD GOOD', '2021-10-03');
 INSERT INTO DiscussionContent
-VALUES (5004, 4, 2, 'tgf34gt34wftgwr3t', '8-Feb-2021');
+VALUES (5004, 4, 2, 'tgf34gt34wftgwr3t', '2021-10-03');
 
 
 -- MovieList (ListID, AccountNumber)
@@ -444,33 +444,33 @@ VALUES (6666, 7);
 
 
 -- MMcontain (MovieID, ListID, AccountNumber)
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (1, 11, 1);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (3, 11, 1);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (3, 111, 4);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (4, 111, 4);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (1, 22, 5);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (2, 22, 5);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (3, 22, 5);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (4, 22, 5);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (5, 22, 5);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (4, 33, 2);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (4, 333, 6);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (1, 44, 3);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (1, 6666, 7);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (3, 6666, 7);
-INSERT INTO MMcontain
+INSERT INTO MMContain
 VALUES (4, 6666, 7);

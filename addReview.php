@@ -68,31 +68,23 @@ function handleMapRequest() {
 
         // get account number
         $raw_accountNumber = executePlainSQL("SELECT AccountNumber FROM Users WHERE Names = '$uid'");
-        if (($row = oci_fetch_row($raw_accountNumber)) != false) {
+        if (($row = mysqli_fetch_row($raw_accountNumber)) != false) {
             $accountNumber = $row[0];
         }
         // get number of reviews
         $maxID = 0;
         $raw_maxID = executePlainSQL("SELECT MAX(ReviewID) FROM RReview");
-        while (($row = oci_fetch_row($raw_maxID)) != false) {
+        while (($row = mysqli_fetch_row($raw_maxID)) != false) {
             $maxID = $row[0];
         }
         $maxID = $maxID + 1;   // set review id to be the max current review ID + 1
 
-        $date = date('j-M-Y');
+        $date = date('Y-m-d');
         executePlainSQL("INSERT INTO RReview
                             VALUES (0, 0, '$Review', '$date', $Rating, '$maxID', '$mid', '$accountNumber')");
     }
-
+    $db_conn->commit();
     echo "<br>Review Saved!<br>";
-    $committed = oci_commit($db_conn);
-
-    // Test whether commit was successful. If error occurred, return error message
-    if (!$committed) {
-        $error = oci_error($db_conn);
-        echo 'Commit failed. Oracle reports: ' . $error['message'];
-
-    }
 
 }
 
